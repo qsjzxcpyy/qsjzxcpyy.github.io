@@ -16,20 +16,24 @@
   <meta name="author" content="qsjzxcpyy">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="2023.11.15学习总结">
+    <meta name="description" content="访问修饰符以及注意事项 11.5日笔记——写工程细节 写工程时 先实现基本功能，先把代码跑通，复杂功能，跑通后实现。 写接口函数的时候最好定义一个额外的变量，好习惯，很有用，info。 using namespace std;最好不要加，可能会导致其他人命名空间冲突。 写工程最好0 warning .size（) 是无符号整数，不会报warning int 会报warning  封装 构造器中可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023.11.15学习总结--java基础">
 <meta property="og:url" content="http://example.com/2023/11/15/2023-11-15%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="小齐的blog">
+<meta property="og:description" content="访问修饰符以及注意事项 11.5日笔记——写工程细节 写工程时 先实现基本功能，先把代码跑通，复杂功能，跑通后实现。 写接口函数的时候最好定义一个额外的变量，好习惯，很有用，info。 using namespace std;最好不要加，可能会导致其他人命名空间冲突。 写工程最好0 warning .size（) 是无符号整数，不会报warning int 会报warning  封装 构造器中可以">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/access_modifier.png">
 <meta property="article:published_time" content="2023-11-15T03:13:21.000Z">
-<meta property="article:modified_time" content="2023-11-15T03:32:02.827Z">
+<meta property="article:modified_time" content="2023-11-15T14:31:34.916Z">
 <meta property="article:author" content="qsjzxcpyy">
 <meta property="article:tag" content="java基础">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/access_modifier.png">
   
   
   
-  <title>2023.11.15学习总结 - 小齐的blog</title>
+  <title>2023.11.15学习总结--java基础 - 小齐的blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2023.11.15学习总结"></span>
+            <span id="subtitle" data-typed-text="2023.11.15学习总结--java基础"></span>
           
         </div>
 
@@ -218,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          814 字
         
       </span>
     
@@ -229,7 +233,7 @@
         
         
         
-          1 分钟
+          7 分钟
         
       </span>
     
@@ -266,12 +270,58 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2023.11.15学习总结</h1>
+            <h1 id="seo-header">2023.11.15学习总结--java基础</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id=""><a href="#" class="headerlink" title=""></a></h4>
+                <h4 id="访问修饰符以及注意事项"><a href="#访问修饰符以及注意事项" class="headerlink" title="访问修饰符以及注意事项"></a>访问修饰符以及注意事项</h4><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/access_modifier.png" srcset="/img/loading.gif" lazyload alt="access_modifier"></p>
+<h4 id="11-5日笔记——写工程细节"><a href="#11-5日笔记——写工程细节" class="headerlink" title="11.5日笔记——写工程细节"></a>11.5日笔记——写工程细节</h4><ul>
+<li>写工程时 先实现基本功能，先把代码跑通，复杂功能，跑通后实现。</li>
+<li>写接口函数的时候最好定义一个额外的变量，好习惯，很有用，info。</li>
+<li>using namespace std;最好不要加，可能会导致其他人命名空间冲突。</li>
+<li>写工程最好0 warning .size（) 是无符号整数，不会报warning int 会报warning</li>
+</ul>
+<h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><ul>
+<li>构造器中可以写get ,set 方法，进行数据合法性判断。</li>
+</ul>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><ul>
+<li>在初始化子类的时候，必须先初始化父类，即在子类的构造器中默认调用父类的无参构造方法<ul>
+<li>如果父类中没有默认的无参构造方法，则必须在子类中指定使用父类的哪种构造方法</li>
+<li>必须在子类构造器的第一行代码初始化父类</li>
+</ul>
+</li>
+</ul>
+<h4 id="不懂概念汇总"><a href="#不懂概念汇总" class="headerlink" title="不懂概念汇总"></a>不懂概念汇总</h4><ul>
+<li><p>类在实现接口的方法时，不能抛出强制性异常，只能在接口中，或者继承接口的抽象类中抛出该强制性异常</p>
+</li>
+<li><p>最常用的继承接口是没有包含任何方法的接口。</p>
+<ul>
+<li><p>标记接口是没有任何方法和属性的接口.它仅仅表明它的类属于一个特定的类型,供其他代码来测试允许做一些事情。</p>
+</li>
+<li><p>标记接口作用：简单形象的说就是给某个对象打个标（盖个戳），使对象拥有某个或某些特权。</p>
+</li>
+<li><pre><code class="hljs">package java.util;
+public interface EventListener
+&#123;&#125;
+</code></pre>
+</li>
+<li><p>没有任何方法的接口被称为标记接口。标记接口主要用于以下两种目的：</p>
+<ul>
+<li>建立一个公共的父接口：</li>
+</ul>
+<p>正如EventListener接口，这是由几十个其他接口扩展的Java API，你可以使用一个标记接口来建立一组接口的父接口。例如：当一个接口继承了EventListener接口，Java虚拟机(JVM)就知道该接口将要被用于一个事件的代理方案。</p>
+<ul>
+<li><p>向一个类添加数据类型：</p>
+<p>这种情况是标记接口最初的目的，实现标记接口的类不需要定义任何接口方法(因为标记接口根本就没有方法)，但是该类通过多态性变成一个接口类型。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="今日小结"><a href="#今日小结" class="headerlink" title="今日小结"></a>今日小结</h4><p>主要是复习了java一些概念 类，继承，接口，文件，封装，重写，重载等概念。</p>
+
                 
               </div>
             
@@ -323,7 +373,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2023.11.15学习总结</div>
+      <div>2023.11.15学习总结--java基础</div>
       <div>http://example.com/2023/11/15/2023-11-15学习总结/</div>
     </div>
     <div class="license-meta">
@@ -367,6 +417,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/11/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%8B%B1%E8%AF%AD%E5%8D%95%E8%AF%8D/" title="计算机英语单词">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计算机英语单词</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
