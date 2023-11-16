@@ -16,12 +16,12 @@
   <meta name="author" content="qsjzxcpyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="java文档注释作用：程序的说明文档，以一整套网页文件形式体现 基本格式：12345&#x2F;**   * author 小明   *version 1.0   * ...*&#x2F;  生成文档命令：1javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java  [1]: https:&#x2F;&#x2F;c.biancheng.net&#x2F;view&#x2F;6262.html	“文">
+    <meta name="description" content="java文档注释作用：程序的说明文档，以一整套网页文件形式体现 基本格式：&#x2F;**    * author 小明    *version 1.0    * ... *&#x2F;  生成文档命令：javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java  [1]: https:&#x2F;&#x2F;c.biancheng.net&#x2F;view&#x2F;6262.html	“文档注">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2023_11_14当日笔记及总结——java基础知识">
 <meta property="og:url" content="http://example.com/2023/11/14/2023-11-14%E5%BD%93%E6%97%A5%E7%AC%94%E8%AE%B0%E5%8F%8A%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="小齐的blog">
-<meta property="og:description" content="java文档注释作用：程序的说明文档，以一整套网页文件形式体现 基本格式：12345&#x2F;**   * author 小明   *version 1.0   * ...*&#x2F;  生成文档命令：1javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java  [1]: https:&#x2F;&#x2F;c.biancheng.net&#x2F;view&#x2F;6262.html	“文">
+<meta property="og:description" content="java文档注释作用：程序的说明文档，以一整套网页文件形式体现 基本格式：&#x2F;**    * author 小明    *version 1.0    * ... *&#x2F;  生成文档命令：javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java  [1]: https:&#x2F;&#x2F;c.biancheng.net&#x2F;view&#x2F;6262.html	“文档注">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/Operator_priority.png">
 <meta property="article:published_time" content="2023-11-14T02:11:22.000Z">
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          927 字
+          904 字
         
       </span>
     
@@ -276,9 +276,13 @@
               <div class="markdown-body">
                 
                 <h4 id="java文档注释"><a href="#java文档注释" class="headerlink" title="java文档注释"></a>java文档注释</h4><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><p>程序的说明文档，以一整套网页文件形式体现</p>
-<h5 id="基本格式："><a href="#基本格式：" class="headerlink" title="基本格式："></a>基本格式：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">   * author 小明</span><br><span class="hljs-comment">   *version 1.0</span><br><span class="hljs-comment">   * ...</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<h5 id="基本格式："><a href="#基本格式：" class="headerlink" title="基本格式："></a>基本格式：</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment">   * author 小明</span>
+<span class="hljs-comment">   *version 1.0</span>
+<span class="hljs-comment">   * ...</span>
+<span class="hljs-comment">*/</span></code></pre></div>
 
-<h5 id="生成文档命令："><a href="#生成文档命令：" class="headerlink" title="生成文档命令："></a>生成文档命令：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java<br></code></pre></td></tr></table></figure>
+<h5 id="生成文档命令："><a href="#生成文档命令：" class="headerlink" title="生成文档命令："></a>生成文档命令：</h5><div class="code-wrapper"><pre><code class="hljs java">javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java</code></pre></div>
 
 <p>[1]: <a target="_blank" rel="noopener" href="https://c.biancheng.net/view/6262.html">https://c.biancheng.net/view/6262.html</a>	“文档注释详解”</p>
 <h4 id="API-中文文档以及其他资料"><a href="#API-中文文档以及其他资料" class="headerlink" title="API 中文文档以及其他资料"></a>API 中文文档以及其他资料</h4><p>[2]: <a target="_blank" rel="noopener" href="https://www.matools.com/">https://www.matools.com/</a>	“API中文文档”</p>
@@ -294,7 +298,19 @@
 <li><p>常量名，所有字母大写，多个单词时 ，用下划线连接（AAA_BBB_CCC)</p>
 </li>
 </ol>
-<h4 id="break-指定跳出的标签层（不到迫不得已不要用）"><a href="#break-指定跳出的标签层（不到迫不得已不要用）" class="headerlink" title="break 指定跳出的标签层（不到迫不得已不要用）"></a>break 指定跳出的标签层（不到迫不得已不要用）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++"><br>lable1:<br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i ++)&#123;<br>lable2:<br>   <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j ++)&#123;<br>   lable3:<br>       <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; cnt; k ++)&#123;<br>          <span class="hljs-keyword">break</span> lable1;<br>       &#125;<br>   &#125;<br>&#125;<br><span class="hljs-comment">//break 跳出指定的循环层;</span><br><span class="hljs-comment">//continue 与 break 类似</span><br></code></pre></td></tr></table></figure>
+<h4 id="break-指定跳出的标签层（不到迫不得已不要用）"><a href="#break-指定跳出的标签层（不到迫不得已不要用）" class="headerlink" title="break 指定跳出的标签层（不到迫不得已不要用）"></a>break 指定跳出的标签层（不到迫不得已不要用）</h4><div class="code-wrapper"><pre><code class="hljs c++">
+lable1:
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i ++)&#123;
+lable2:
+   <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j ++)&#123;
+   lable3:
+       <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; cnt; k ++)&#123;
+          <span class="hljs-keyword">break</span> lable1;
+       &#125;
+   &#125;
+&#125;
+<span class="hljs-comment">//break 跳出指定的循环层;</span>
+<span class="hljs-comment">//continue 与 break 类似</span></code></pre></div>
 
 <h4 id="java零散知识点"><a href="#java零散知识点" class="headerlink" title="java零散知识点"></a>java零散知识点</h4><ol>
 <li>局部变量不能加修饰符。</li>
