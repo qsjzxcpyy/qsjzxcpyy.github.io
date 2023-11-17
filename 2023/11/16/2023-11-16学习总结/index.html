@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/01/2243690-9cd9c896e0d512ed.gif">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/01/java-coll-2020-11-16.png">
 <meta property="article:published_time" content="2023-11-16T06:02:11.000Z">
-<meta property="article:modified_time" content="2023-11-16T14:49:03.631Z">
+<meta property="article:modified_time" content="2023-11-16T15:23:07.244Z">
 <meta property="article:author" content="qsjzxcpyy">
 <meta property="article:tag" content="java基础">
 <meta name="twitter:card" content="summary_large_image">
@@ -363,6 +363,7 @@
         System.out.println(numbers);
     &#125;
 &#125;</code></pre></div>
+
 </li>
 <li><p>Java 迭代器是一种单向遍历机制，即<strong>只能从前往后遍历</strong>集合中的元素，不能往回遍历。同时，在使用迭代器遍历集合时，<strong>不能直接修改集合中的元素</strong>，而是需要使用迭代器的 remove() 方法来删除当前元素。</p>
 </li>
@@ -391,38 +392,39 @@
          &#125;
          System.out.println();
     &#125;
- 
+  
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">( String args[] )</span>
     &#123;
         <span class="hljs-comment">// 创建不同类型数组： Integer, Double 和 Character</span>
         Integer[] intArray = &#123; <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span> &#125;;
         Double[] doubleArray = &#123; <span class="hljs-number">1.1</span>, <span class="hljs-number">2.2</span>, <span class="hljs-number">3.3</span>, <span class="hljs-number">4.4</span> &#125;;
         Character[] charArray = &#123; <span class="hljs-string">&#x27;H&#x27;</span>, <span class="hljs-string">&#x27;E&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>, <span class="hljs-string">&#x27;L&#x27;</span>, <span class="hljs-string">&#x27;O&#x27;</span> &#125;;
- 
+     
         System.out.println( <span class="hljs-string">&quot;整型数组元素为:&quot;</span> );
         printArray( intArray  ); <span class="hljs-comment">// 传递一个整型数组</span>
- 
+     
         System.out.println( <span class="hljs-string">&quot;\n双精度型数组元素为:&quot;</span> );
         printArray( doubleArray ); <span class="hljs-comment">// 传递一个双精度型数组</span>
- 
+     
         System.out.println( <span class="hljs-string">&quot;\n字符型数组元素为:&quot;</span> );
         printArray( charArray ); <span class="hljs-comment">// 传递一个字符型数组</span>
     &#125; 
 &#125;</code></pre></div>
 
 <ul>
-<li>编译以上代码，运行结果如下所示： <div class="code-wrapper"><pre><code class="hljs java">整型数组元素为:
+<li>编译以上代码，运行结果如下所示：</li>
+</ul>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs java">整型数组元素为:
 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> 
 
 双精度型数组元素为:
 <span class="hljs-number">1.1</span> <span class="hljs-number">2.2</span> <span class="hljs-number">3.3</span> <span class="hljs-number">4.4</span> 
 
 字符型数组元素为:
-H E L L O 
-</code></pre></div></li>
-</ul>
-</li>
-</ul>
+H E L L O</code></pre></div>
+
 <h4 id="泛型类以及通配符（？）"><a href="#泛型类以及通配符（？）" class="headerlink" title="泛型类以及通配符（？）"></a>泛型类以及通配符（？）</h4><h5 id="链接：https-www-runoob-com-java-java-generics-html"><a href="#链接：https-www-runoob-com-java-java-generics-html" class="headerlink" title="链接：https://www.runoob.com/java/java-generics.html"></a>链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-generics.html">https://www.runoob.com/java/java-generics.html</a></h5><h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><h5 id="序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。"><a href="#序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。" class="headerlink" title="序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。"></a>序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。</h5><h5 id="链接：https-www-runoob-com-java-java-serialization-html"><a href="#链接：https-www-runoob-com-java-java-serialization-html" class="headerlink" title="链接：https://www.runoob.com/java/java-serialization.html"></a>链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-serialization.html">https://www.runoob.com/java/java-serialization.html</a></h5><h4 id="TCP——Socket"><a href="#TCP——Socket" class="headerlink" title="TCP——Socket"></a>TCP——Socket</h4><ul>
 <li>服务器实例化一个 ServerSocket 对象，表示通过服务器上的端口通信。</li>
 <li>服务器调用 ServerSocket 类的 accept() 方法，该方法将一直等待，直到客户端连接到服务器上给定的端口。</li>
@@ -623,6 +625,12 @@ H E L L O
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/11/16/2023-11-17%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="2023.11.17学习总结">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2023.11.17学习总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
