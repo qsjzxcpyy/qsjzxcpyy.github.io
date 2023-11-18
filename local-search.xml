@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>2023.11.18学习总结</title>
+    <link href="/2023/11/18/2023-11-18%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/11/18/2023-11-18%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h4 id="java-8-新特性"><a href="#java-8-新特性" class="headerlink" title="java 8 新特性"></a>java 8 新特性</h4><h5 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h5><p>个人理解： 用目前存在的方法，构造器替代Lambda表达式的主体，使代码更简洁。</p><h5 id="链接：-https-www-cnblogs-com-xiaoxi-p-7099667-html"><a href="#链接：-https-www-cnblogs-com-xiaoxi-p-7099667-html" class="headerlink" title="链接： https://www.cnblogs.com/xiaoxi/p/7099667.html"></a>链接： <a href="https://www.cnblogs.com/xiaoxi/p/7099667.html">https://www.cnblogs.com/xiaoxi/p/7099667.html</a></h5><h5 id="默认方法"><a href="#默认方法" class="headerlink" title="默认方法"></a>默认方法</h5><p>个人理解： 为了添加接口方法，而不影响已经实现该接口的类。</p><h5 id="链接：https-segmentfault-com-a-1190000017433982"><a href="#链接：https-segmentfault-com-a-1190000017433982" class="headerlink" title="链接：https://segmentfault.com/a/1190000017433982"></a>链接：<a href="https://segmentfault.com/a/1190000017433982">https://segmentfault.com/a/1190000017433982</a></h5><h5 id="Optional类"><a href="#Optional类" class="headerlink" title="Optional类"></a>Optional类</h5><p>个人理解： 一个解决空指&gt;针异常的特殊类。</p><h5 id="链接"><a href="#链接" class="headerlink" title="链接 : &lt;https://juejin.cn/post/6844903960050925581"></a>链接 : &lt;<a href="https://juejin.cn/post/6844903960050925581">https://juejin.cn/post/6844903960050925581</a></h5><h5 id="Stream流"><a href="#Stream流" class="headerlink" title="Stream流"></a>Stream流</h5><p>个人理解： 为了便捷的处理集合元素。</p><h5 id="链接：https-juejin-cn-post-6844903830254010381"><a href="#链接：https-juejin-cn-post-6844903830254010381" class="headerlink" title="链接：https://juejin.cn/post/6844903830254010381"></a>链接：<a href="https://juejin.cn/post/6844903830254010381">https://juejin.cn/post/6844903830254010381</a></h5><h4 id="java零碎知识点"><a href="#java零碎知识点" class="headerlink" title="java零碎知识点"></a>java零碎知识点</h4><ul><li>继承其实是建立了一个查找机制，就近原则。</li><li>属性没有重写之说，看编译类型（引用类型）。</li><li>instanceof 是判断运行类型是否是某个类的类型或子类型。</li><li>当调用对象方法时，该方法会与该对象的运行类型绑定，属性没有动态绑定机制，哪里声明哪里使用。<ul><li>用人话说就是，调用方法时先从运行类型类中查看方法是否存在如果存在，直接调用，不存在从父类中查找，如果从父类中找到了该方法，并且该方法中还调用了另一个方法，此时跟之前一样，先从运行类中寻找方法，属性不是，哪里声明哪里使用。</li></ul></li><li>向上转型只能调用父类的方法，不能使用子类的特有方法，这就是为什么要向下转型。</li></ul><h4 id="IDEA断点调试"><a href="#IDEA断点调试" class="headerlink" title="IDEA断点调试"></a>IDEA断点调试</h4><ul><li><strong>F8</strong>执行下一条语句。</li><li><strong>F7</strong> 跳入方法内</li><li><strong>shift + F8</strong> 跳出方法</li><li><strong>F9</strong> 直接执行到下一个断点（resume）</li></ul><p>感悟： 看视频能get到新的点，多加练习，不要光看。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>第一次完成六公里hh</title>
     <link href="/2023/11/17/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%88%90%E5%85%AD%E5%85%AC%E9%87%8Chh/"/>
     <url>/2023/11/17/%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AE%8C%E6%88%90%E5%85%AD%E5%85%AC%E9%87%8Chh/</url>
