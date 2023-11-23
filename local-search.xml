@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>2023.11.23学习总结</title>
+    <link href="/2023/11/23/2023-11-23%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/11/23/2023-11-23%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h4 id="今天实现了坦克的移动和发射"><a href="#今天实现了坦克的移动和发射" class="headerlink" title="今天实现了坦克的移动和发射"></a>今天实现了坦克的移动和发射</h4><p>熟悉了线程基本用法</p><ul><li><code>thread.start()</code>实际上是启动run方法。</li></ul><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//线程代理类 , 模拟了一个极简的 Thread 类</span><span class="hljs-keyword">class</span> <span class="hljs-title class_">ThreadProxy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<span class="hljs-comment">//你可以把 Proxy 类当做 ThreadProxy</span><span class="hljs-keyword">private</span> <span class="hljs-type">Runnable</span> <span class="hljs-variable">target</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<span class="hljs-comment">//属性，类型是 Runnable</span><span class="hljs-meta">@Override</span><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<span class="hljs-keyword">if</span> (target != <span class="hljs-literal">null</span>) &#123;target.run();<span class="hljs-comment">//动态绑定（运行类型 Tiger）</span>&#125;&#125;<span class="hljs-keyword">public</span> <span class="hljs-title function_">ThreadProxy</span><span class="hljs-params">(Runnable target)</span> &#123;<span class="hljs-built_in">this</span>.target = target;&#125;<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">start</span><span class="hljs-params">()</span> &#123;start0();<span class="hljs-comment">//这个方法时真正实现多线程方法</span>&#125;<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">start0</span><span class="hljs-params">()</span> &#123;run();&#125;&#125;</code></pre></div><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/tank1.png" alt="tank1"></p><h4 id="画图形"><a href="#画图形" class="headerlink" title="画图形"></a>画图形</h4><ul><li>JFrame  窗口，放画板 JPanel , 画笔Graphics 在JPanel 画图形</li><li>第一次打开画板会调用 paint()方法，改变窗口大小，最大化，最小化，repaint(),等会重新调用paint()方法。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2023.11.22学习总结</title>
     <link href="/2023/11/22/2023-11-22%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <url>/2023/11/22/2023-11-22%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
