@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>2023.11.25学习总结</title>
+    <link href="/2023/11/25/2023-11-25%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/11/25/2023-11-25%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><h5 id="线程方法"><a href="#线程方法" class="headerlink" title="线程方法"></a>线程方法</h5><ul><li>interrupt 方法，中断休眠中的线程，相当于唤醒。</li><li>main()做为入口开始运行的。　是一个线程,同时还是一个进程</li><li>yield()进程礼让，不一定成功</li><li>join() 插入，执行完了，在允许别的进程执行。</li><li>setDaemon，设置为守护线程，当用户线程结束后，守护线程结束，垃圾回收机制，是守护线程。</li></ul><h5 id="线程锁"><a href="#线程锁" class="headerlink" title="线程锁"></a>线程锁</h5><ul><li>this锁推断出，this指向的是runnable接口的实现类。</li></ul><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//如果在静态方法中，实现一个同步代码块.</span>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">m2</span><span class="hljs-params">()</span> &#123;        <span class="hljs-keyword">synchronized</span> (SellTicket03.class) &#123;            System.out.println(<span class="hljs-string">&quot;m2&quot;</span>);        &#125;    &#125;<span class="hljs-comment">//所指向的是类的class对象。</span></code></pre></div><div class="code-wrapper"><pre><code class="hljs java">/<span class="hljs-number">1.</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sell</span><span class="hljs-params">()</span> &#123;&#125; 就是一个同步方法<span class="hljs-comment">//2. 这时锁在 this对象</span><span class="hljs-comment">//3. 也可以在代码块上写 synchronize ,同步代码块, 互斥锁还是在this对象</span><span class="hljs-keyword">public</span> <span class="hljs-comment">/*synchronized*/</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sell</span><span class="hljs-params">()</span>&#123;            <span class="hljs-keyword">synchronized</span> (<span class="hljs-comment">/*this*/</span> object) &#123;            <span class="hljs-keyword">if</span> (ticketNum &lt;= <span class="hljs-number">0</span>) &#123;                System.out.println(<span class="hljs-string">&quot;售票结束...&quot;</span>);                loop = <span class="hljs-literal">false</span>;                <span class="hljs-keyword">return</span>;            &#125;        &#125;&#125;<span class="hljs-comment">//也可以在runnable实现类中定义一个object 对象，使object对象成为锁。</span><span class="hljs-comment">//最重要的是锁的唯一性！！！！！！</span></code></pre></div><ul><li><p>代码块加锁的效率更高。</p></li><li><p>代码块执行完，出未处理错误、异常，break、return ，执行 wait方法会释放锁。</p></li><li><p>sleep(),yield()方法不会释放锁。线程被挂起 suspend方法，不会释放锁。</p><ul><li><code>Thread</code>类的<code>suspend()</code>方法使线程无法运行到等待状态。如果要停止线程执行并在发生特定事件时再次启动，则使用此方法。 此方法允许线程暂时停止执行。 可以使用<code>resume()</code>方法恢复挂起的线程。 &#x2F;&#x2F;更多请阅读：<a href="https://www.yiibai.com/java_multithreading/java-thread-suspend-method.html">https://www.yiibai.com/java_multithreading/java-thread-suspend-method.html</a></li></ul></li><li><p>suspend和resume方法不推荐使用，避免使用。</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2023.11.23学习总结</title>
     <link href="/2023/11/23/2023-11-23%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <url>/2023/11/23/2023-11-23%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
