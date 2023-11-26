@@ -16,22 +16,24 @@
   <meta name="author" content="qsjzxcpyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="线程线程方法 interrupt 方法，中断休眠中的线程，相当于唤醒。 main()做为入口开始运行的。　是一个线程,同时还是一个进程 yield()进程礼让，不一定成功 join() 插入，执行完了，在允许别的进程执行。 setDaemon，设置为守护线程，当用户线程结束后，守护线程结束，垃圾回收机制，是守护线程。  线程锁 this锁推断出，this指向的是runnable接口的实现类。  &#x2F;">
+    <meta name="description" content="绑定机制只是针对方法有用 访问属性是访问的声明类的属性，例如父类子类有相同的属性名，向上转型，访问属性，访问的是父类的属性，而不是子类的，访问同名方法，访问的是子类的而不是父类的，所以说，动态绑定针对方法有用，属性不是！！！！！！  动态绑定：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43900956&#x2F;article&#x2F;details&#x2F;115803111 今天实现了坦克的对战功能非常爽 线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023.11.25学习总结">
-<meta property="og:url" content="http://example.com/2023/11/25/2023-11-25%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="2023.11.26学习总结">
+<meta property="og:url" content="http://example.com/2023/11/26/2023-11-26%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="小齐的blog">
-<meta property="og:description" content="线程线程方法 interrupt 方法，中断休眠中的线程，相当于唤醒。 main()做为入口开始运行的。　是一个线程,同时还是一个进程 yield()进程礼让，不一定成功 join() 插入，执行完了，在允许别的进程执行。 setDaemon，设置为守护线程，当用户线程结束后，守护线程结束，垃圾回收机制，是守护线程。  线程锁 this锁推断出，this指向的是runnable接口的实现类。  &#x2F;">
+<meta property="og:description" content="绑定机制只是针对方法有用 访问属性是访问的声明类的属性，例如父类子类有相同的属性名，向上转型，访问属性，访问的是父类的属性，而不是子类的，访问同名方法，访问的是子类的而不是父类的，所以说，动态绑定针对方法有用，属性不是！！！！！！  动态绑定：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43900956&#x2F;article&#x2F;details&#x2F;115803111 今天实现了坦克的对战功能非常爽 线程">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-25T10:55:24.000Z">
-<meta property="article:modified_time" content="2023-11-25T12:44:53.442Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/tank04.png">
+<meta property="article:published_time" content="2023-11-26T07:29:13.000Z">
+<meta property="article:modified_time" content="2023-11-26T16:35:00.531Z">
 <meta property="article:author" content="qsjzxcpyy">
 <meta property="article:tag" content="java基础">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/tank04.png">
   
   
   
-  <title>2023.11.25学习总结 - 小齐的blog</title>
+  <title>2023.11.26学习总结 - 小齐的blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2023.11.25学习总结"></span>
+            <span id="subtitle" data-typed-text="2023.11.26学习总结"></span>
           
         </div>
 
@@ -208,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-25 18:55" pubdate>
-          2023年11月25日 晚上
+        <time datetime="2023-11-26 15:29" pubdate>
+          2023年11月26日 下午
         </time>
       </span>
     
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          993 字
+          744 字
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          9 分钟
+          7 分钟
         
       </span>
     
@@ -268,59 +270,60 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2023.11.25学习总结</h1>
+            <h1 id="seo-header">2023.11.26学习总结</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><h5 id="线程方法"><a href="#线程方法" class="headerlink" title="线程方法"></a>线程方法</h5><ul>
-<li>interrupt 方法，中断休眠中的线程，相当于唤醒。</li>
-<li>main()做为入口开始运行的。　是一个线程,同时还是一个进程</li>
-<li>yield()进程礼让，不一定成功</li>
-<li>join() 插入，执行完了，在允许别的进程执行。</li>
-<li>setDaemon，设置为守护线程，当用户线程结束后，守护线程结束，垃圾回收机制，是守护线程。</li>
+                <h4 id="绑定机制只是针对方法有用"><a href="#绑定机制只是针对方法有用" class="headerlink" title="绑定机制只是针对方法有用"></a>绑定机制只是针对方法有用</h4><ul>
+<li>访问属性是访问的声明类的属性，例如父类子类有相同的属性名，向上转型，访问属性，访问的是父类的属性，而不是子类的，访问同名方法，访问的是子类的而不是父类的，所以说，动态绑定针对方法有用，属性不是！！！！！！</li>
 </ul>
-<h5 id="线程锁"><a href="#线程锁" class="headerlink" title="线程锁"></a>线程锁</h5><ul>
-<li>this锁推断出，this指向的是runnable接口的实现类。</li>
-</ul>
-<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//如果在静态方法中，实现一个同步代码块.</span>
+<p>动态绑定：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43900956/article/details/115803111">https://blog.csdn.net/qq_43900956/article/details/115803111</a></p>
+<h4 id="今天实现了坦克的对战功能非常爽"><a href="#今天实现了坦克的对战功能非常爽" class="headerlink" title="今天实现了坦克的对战功能非常爽"></a>今天实现了坦克的对战功能非常爽</h4><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/tank04.png" srcset="/img/loading.gif" lazyload alt="tank04"></p>
+<h4 id="线程-run方法不会影响runnable-实现类的属性的值，是多少结束后还是多少。"><a href="#线程-run方法不会影响runnable-实现类的属性的值，是多少结束后还是多少。" class="headerlink" title="线程 run方法不会影响runnable 实现类的属性的值，是多少结束后还是多少。"></a>线程 run方法不会影响runnable 实现类的属性的值，是多少结束后还是多少。</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
+        <span class="hljs-type">A</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">A</span>();
+        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(a).start();
+        System.out.println(a.s);
+        System.out.println(a.a1);
 
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span>  <span class="hljs-keyword">void</span> <span class="hljs-title function_">m2</span><span class="hljs-params">()</span> &#123;
-        <span class="hljs-keyword">synchronized</span> (SellTicket03.class) &#123;
-            System.out.println(<span class="hljs-string">&quot;m2&quot;</span>);
+        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.s.size(); i ++)&#123;
+            System.out.println(a.s.get(i));
+
+    &#125;
+
+&#125;
+
+&#125;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;
+    Vector&lt;Integer&gt; s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>&lt;&gt;();
+    <span class="hljs-type">int</span> <span class="hljs-variable">a1</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">A</span><span class="hljs-params">()</span>&#123;
+        s.add(<span class="hljs-number">1</span>);
+        s.add(<span class="hljs-number">2</span>);
+        s.add(<span class="hljs-number">3</span>);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;
+        s.add(<span class="hljs-number">4</span>);
+        s.add(<span class="hljs-number">5</span>);
+        s.add(<span class="hljs-number">6</span>);
+        System.out.println(<span class="hljs-literal">false</span>);
+        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;
+            <span class="hljs-keyword">if</span>(a1 == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;
+            a1 --;
         &#125;
     &#125;
-<span class="hljs-comment">//所指向的是类的class对象。</span></code></pre></div>
+&#125;</code></pre></div>
 
-<div class="code-wrapper"><pre><code class="hljs java">/<span class="hljs-number">1.</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sell</span><span class="hljs-params">()</span> &#123;&#125; 就是一个同步方法
-<span class="hljs-comment">//2. 这时锁在 this对象</span>
-<span class="hljs-comment">//3. 也可以在代码块上写 synchronize ,同步代码块, 互斥锁还是在this对象</span>
-<span class="hljs-keyword">public</span> <span class="hljs-comment">/*synchronized*/</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sell</span><span class="hljs-params">()</span>&#123;
-    
-        <span class="hljs-keyword">synchronized</span> (<span class="hljs-comment">/*this*/</span> object) &#123;
-            <span class="hljs-keyword">if</span> (ticketNum &lt;= <span class="hljs-number">0</span>) &#123;
-                System.out.println(<span class="hljs-string">&quot;售票结束...&quot;</span>);
-                loop = <span class="hljs-literal">false</span>;
-                <span class="hljs-keyword">return</span>;
-            &#125;
-        &#125;
-&#125;
-<span class="hljs-comment">//也可以在runnable实现类中定义一个object 对象，使object对象成为锁。</span>
-<span class="hljs-comment">//最重要的是锁的唯一性！！！！！！</span></code></pre></div>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><div class="code-wrapper"><pre><code class="hljs java">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-number">5</span>
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-literal">false</span></code></pre></div>
 
-<ul>
-<li><p>代码块加锁的效率更高。</p>
-</li>
-<li><p>代码块执行完，出未处理错误、异常，break、return ，执行 wait方法会释放锁。</p>
-</li>
-<li><p>sleep(),yield()方法不会释放锁。线程被挂起 suspend方法，不会释放锁。</p>
-<ul>
-<li><code>Thread</code>类的<code>suspend()</code>方法使线程无法运行到等待状态。如果要停止线程执行并在发生特定事件时再次启动，则使用此方法。 此方法允许线程暂时停止执行。 可以使用<code>resume()</code>方法恢复挂起的线程。 &#x2F;&#x2F;更多请阅读：<a target="_blank" rel="noopener" href="https://www.yiibai.com/java_multithreading/java-thread-suspend-method.html">https://www.yiibai.com/java_multithreading/java-thread-suspend-method.html</a></li>
-</ul>
-</li>
-<li><p>suspend和resume方法不推荐使用，避免使用。</p>
-</li>
-</ul>
 
                 
               </div>
@@ -373,8 +376,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2023.11.25学习总结</div>
-      <div>http://example.com/2023/11/25/2023-11-25学习总结/</div>
+      <div>2023.11.26学习总结</div>
+      <div>http://example.com/2023/11/26/2023-11-26学习总结/</div>
     </div>
     <div class="license-meta">
       
@@ -386,7 +389,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月25日</div>
+          <div>2023年11月26日</div>
         </div>
       
       
@@ -418,18 +421,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/26/2023-11-26%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="2023.11.26学习总结">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2023.11.26学习总结</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/23/2023-11-23%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="2023.11.23学习总结">
-                        <span class="hidden-mobile">2023.11.23学习总结</span>
+                      <a href="/2023/11/25/2023-11-25%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="2023.11.25学习总结">
+                        <span class="hidden-mobile">2023.11.25学习总结</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

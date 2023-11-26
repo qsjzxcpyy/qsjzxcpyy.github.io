@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>2023.11.26学习总结</title>
+    <link href="/2023/11/26/2023-11-26%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
+    <url>/2023/11/26/2023-11-26%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
+    
+    <content type="html"><![CDATA[<h4 id="绑定机制只是针对方法有用"><a href="#绑定机制只是针对方法有用" class="headerlink" title="绑定机制只是针对方法有用"></a>绑定机制只是针对方法有用</h4><ul><li>访问属性是访问的声明类的属性，例如父类子类有相同的属性名，向上转型，访问属性，访问的是父类的属性，而不是子类的，访问同名方法，访问的是子类的而不是父类的，所以说，动态绑定针对方法有用，属性不是！！！！！！</li></ul><p>动态绑定：<a href="https://blog.csdn.net/qq_43900956/article/details/115803111">https://blog.csdn.net/qq_43900956/article/details/115803111</a></p><h4 id="今天实现了坦克的对战功能非常爽"><a href="#今天实现了坦克的对战功能非常爽" class="headerlink" title="今天实现了坦克的对战功能非常爽"></a>今天实现了坦克的对战功能非常爽</h4><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/tank04.png" alt="tank04"></p><h4 id="线程-run方法不会影响runnable-实现类的属性的值，是多少结束后还是多少。"><a href="#线程-run方法不会影响runnable-实现类的属性的值，是多少结束后还是多少。" class="headerlink" title="线程 run方法不会影响runnable 实现类的属性的值，是多少结束后还是多少。"></a>线程 run方法不会影响runnable 实现类的属性的值，是多少结束后还是多少。</h4><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span> &#123;    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;        <span class="hljs-type">A</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">A</span>();        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(a).start();        System.out.println(a.s);        System.out.println(a.a1);        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.s.size(); i ++)&#123;            System.out.println(a.s.get(i));    &#125;&#125;&#125;<span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;    Vector&lt;Integer&gt; s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vector</span>&lt;&gt;();    <span class="hljs-type">int</span> <span class="hljs-variable">a1</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span>;    <span class="hljs-keyword">public</span> <span class="hljs-title function_">A</span><span class="hljs-params">()</span>&#123;        s.add(<span class="hljs-number">1</span>);        s.add(<span class="hljs-number">2</span>);        s.add(<span class="hljs-number">3</span>);    &#125;    <span class="hljs-meta">@Override</span>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;        s.add(<span class="hljs-number">4</span>);        s.add(<span class="hljs-number">5</span>);        s.add(<span class="hljs-number">6</span>);        System.out.println(<span class="hljs-literal">false</span>);        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;            <span class="hljs-keyword">if</span>(a1 == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;            a1 --;        &#125;    &#125;&#125;</code></pre></div><h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><div class="code-wrapper"><pre><code class="hljs java">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<span class="hljs-number">5</span><span class="hljs-number">1</span><span class="hljs-number">2</span><span class="hljs-number">3</span><span class="hljs-literal">false</span></code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2023.11.25学习总结</title>
     <link href="/2023/11/25/2023-11-25%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"/>
     <url>/2023/11/25/2023-11-25%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
