@@ -1,0 +1,954 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qsjzxcpyy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="创建文件方式 根据路径创建文件File(String) 根据父文件目录+子路径创建文件File(File,String) 根据父目录+子路径创建文件File(String,String)  FileOutputStream new FileOutputStream(filePath) 覆盖文件原来内容 new FileOutputStream(filePath,true) 追加内容  FileWr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023.11.27学习总结">
+<meta property="og:url" content="http://example.com/2023/11/27/2023-11-27%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="小齐的blog">
+<meta property="og:description" content="创建文件方式 根据路径创建文件File(String) 根据父文件目录+子路径创建文件File(File,String) 根据父目录+子路径创建文件File(String,String)  FileOutputStream new FileOutputStream(filePath) 覆盖文件原来内容 new FileOutputStream(filePath,true) 追加内容  FileWr">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dxl1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dxl2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dxl3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/zhl.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/bzh.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dyl.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dyl1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/pro.png">
+<meta property="article:published_time" content="2023-11-27T07:53:55.000Z">
+<meta property="article:modified_time" content="2023-11-27T14:36:35.698Z">
+<meta property="article:author" content="qsjzxcpyy">
+<meta property="article:tag" content="java基础">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dxl1.png">
+  
+  
+  
+  <title>2023.11.27学习总结 - 小齐的blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小齐的blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2023.11.27学习总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-27 15:53" pubdate>
+          2023年11月27日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          61 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2023.11.27学习总结</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="创建文件方式"><a href="#创建文件方式" class="headerlink" title="创建文件方式"></a>创建文件方式</h4><ul>
+<li>根据路径创建文件File(String)</li>
+<li>根据父文件目录+子路径创建文件File(File,String)</li>
+<li>根据父目录+子路径创建文件File(String,String)</li>
+</ul>
+<h4 id="FileOutputStream"><a href="#FileOutputStream" class="headerlink" title="FileOutputStream"></a>FileOutputStream</h4><ul>
+<li>new FileOutputStream(filePath) 覆盖文件原来内容</li>
+<li>new FileOutputStream(filePath,true) 追加内容</li>
+</ul>
+<h4 id="FileWriter"><a href="#FileWriter" class="headerlink" title="FileWriter"></a>FileWriter</h4><ul>
+<li>对应FileWriter , 一定要关闭流，或者flush才能真正的把数据写入到文件</li>
+</ul>
+<h4 id="BufferedReader-BufferedWriter"><a href="#BufferedReader-BufferedWriter" class="headerlink" title="BufferedReader&#x2F;BufferedWriter"></a>BufferedReader&#x2F;BufferedWriter</h4><ul>
+<li><p>是处理流，里面封装了一个属性为Reader ,可以对不同的数据源进行操作，更加灵活。节点流只能对特定的数据源进行操作，其实就是封装了节点流。可以传入不同的节点流对象，实现不同数据源的操作。</p>
+</li>
+<li><p>BufferWriter同理</p>
+</li>
+<li><p>这两者都属于字符流，关闭处理流时，只需要关闭外层流，内层流底层会自动关闭即可。</p>
+</li>
+<li><p>readLine() 按行读取，效率更高。</p>
+</li>
+<li><p>bufferedWriter.newLine();&#x2F;&#x2F;插入一个和系统相关的换行</p>
+</li>
+<li><p>BufferedReader 和 BufferedWriter 是字符操作 </p>
+</li>
+<li><p>不要去操作 二进制文件[声音，视频，doc, pdf ], 可能造成文件损坏</p>
+</li>
+<li><p>增加缓冲的方式来提高输入输出的效率</p>
+</li>
+</ul>
+<h4 id="BufferedInputStream-BufferedOutputStream"><a href="#BufferedInputStream-BufferedOutputStream" class="headerlink" title="BufferedInputStream&#x2F;BufferedOutputStream"></a>BufferedInputStream&#x2F;BufferedOutputStream</h4><ul>
+<li>与字符流处理流类似，区别就是这是操作字节的。</li>
+</ul>
+<h4 id="对象流ObjectInputStream-ObjectOutputStream"><a href="#对象流ObjectInputStream-ObjectOutputStream" class="headerlink" title="对象流ObjectInputStream&#x2F;ObjectOutputStream"></a>对象流ObjectInputStream&#x2F;ObjectOutputStream</h4><ul>
+<li>&#x2F;&#x2F;序列化后，保存的文件格式，不是存文本，而是按照他的格式来保存 String filePath &#x3D; “e:\data.dat”;</li>
+</ul>
+<img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dxl1.png" srcset="/img/loading.gif" lazyload alt="dxl1"  />
+
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dxl2.png" srcset="/img/loading.gif" lazyload alt="dxl2"></p>
+<img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dxl3.png" srcset="/img/loading.gif" lazyload alt="dxl3"  />
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-type">ObjectOutputStream</span> <span class="hljs-variable">oos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(filePath));
+<span class="hljs-comment">//序列化数据到 e:\data.dat</span>
+oos.writeInt(<span class="hljs-number">100</span>);<span class="hljs-comment">// int -&gt; Integer (实现了 Serializable)</span>
+oos.writeBoolean(<span class="hljs-literal">true</span>);<span class="hljs-comment">// boolean -&gt; Boolean (实现了 Serializable)</span>
+oos.writeChar(<span class="hljs-string">&#x27;a&#x27;</span>);<span class="hljs-comment">// char -&gt; Character (实现了 Serializable)</span>
+oos.writeDouble(<span class="hljs-number">9.5</span>);<span class="hljs-comment">// double -&gt; Double (实现了 Serializable)</span>
+oos.writeUTF(<span class="hljs-string">&quot;韩顺平教育&quot;</span>);<span class="hljs-comment">//String</span>
+<span class="hljs-comment">//保存一个 dog 对象</span>
+oos.writeObject(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>(<span class="hljs-string">&quot;旺财&quot;</span>, <span class="hljs-number">10</span>, <span class="hljs-string">&quot;日本&quot;</span>, <span class="hljs-string">&quot;白色&quot;</span>));
+oos.close();</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-type">ObjectInputStream</span> <span class="hljs-variable">ois</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ObjectInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(<span class="hljs-string">&quot;src\\data.dat&quot;</span>));
+<span class="hljs-comment">// 2.读取， 注意顺序</span>
+System.out.println(ois.readInt());
+System.out.println(ois.readBoolean());
+System.out.println(ois.readChar());
+System.out.println(ois.readDouble());
+System.out.println(ois.readUTF());
+System.out.println(ois.readObject());
+System.out.println(ois.readObject());
+System.out.println(ois.readObject());
+<span class="hljs-comment">// 3.关闭</span>
+ois.close();
+System.out.println(<span class="hljs-string">&quot;以反序列化的方式读取(恢复)ok~&quot;</span>);</code></pre></div>
+
+
+
+<h4 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h4><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/zhl.png" srcset="/img/loading.gif" lazyload alt="zhl"></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.*;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">* 看一个中文乱码问题</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CodeQuestion</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//读取 e:\\a.txt 文件到程序</span>
+<span class="hljs-comment">//a.txt 不是utf-8,会出现乱码</span>
+<span class="hljs-comment">//思路</span>
+<span class="hljs-comment">//1. 创建字符输入流 BufferedReader [处理流]</span>
+<span class="hljs-comment">//2. 使用 BufferedReader 对象读取 a.txt</span>
+<span class="hljs-comment">//3. 默认情况下，读取文件是按照 utf-8 编码</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;e:\\a.txt&quot;</span>;
+<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(filePath));
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> br.readLine();
+System.out.println(<span class="hljs-string">&quot;读取到的内容: &quot;</span> + s);
+br.close();
+<span class="hljs-comment">//InputStreamReader</span>
+<span class="hljs-comment">//OutputStreamWriter</span>
+&#125;
+&#125;</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.transformation;
+<span class="hljs-keyword">import</span> java.io.*;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">* 演示使用 InputStreamReader 转换流解决中文乱码问题</span>
+<span class="hljs-comment">* 将字节流 FileInputStream 转成字符流 InputStreamReader, 指定编码 gbk/utf-8</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">InputStreamReader_</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-type">String</span> <span class="hljs-variable">filePath</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;e:\\a.txt&quot;</span>;
+<span class="hljs-comment">//解读</span>
+<span class="hljs-comment">//1. 把 FileInputStream 转成 InputStreamReader</span>
+<span class="hljs-comment">//2. 指定编码 gbk</span>
+<span class="hljs-comment">//InputStreamReader isr = new InputStreamReader(new FileInputStream(filePath), &quot;gbk&quot;);</span>
+<span class="hljs-comment">//3. 把 InputStreamReader 传入 BufferedReader</span>
+<span class="hljs-comment">//BufferedReader br = new BufferedReader(isr);</span>
+<span class="hljs-comment">//将 2 和 3 合在一起</span>
+<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(filePath), <span class="hljs-string">&quot;gbk&quot;</span>));
+<span class="hljs-comment">//4. 读取</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> br.readLine();
+System.out.println(<span class="hljs-string">&quot;读取内容=&quot;</span> + s);
+<span class="hljs-comment">//5. 关闭外层流</span>
+br.close();
+&#125;
+&#125;</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 1.创建流对象</span>
+<span class="hljs-type">OutputStreamWriter</span> <span class="hljs-variable">osw</span> <span class="hljs-operator">=</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;d:\\a.txt&quot;</span>), <span class="hljs-string">&quot;gbk&quot;</span>);
+韩顺平循序渐进学Java 零基础第<span class="hljs-number">858</span>页<span class="hljs-comment">// 2.写入</span>
+osw.write(<span class="hljs-string">&quot;hello,韩顺平教育~&quot;</span>);
+<span class="hljs-comment">// 3.关闭</span>
+osw.close();
+System.out.println(<span class="hljs-string">&quot;保存成功~&quot;</span>);
+</code></pre></div>
+
+<h4 id="标准输入输出流"><a href="#标准输入输出流" class="headerlink" title="标准输入输出流"></a>标准输入输出流</h4><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/bzh.png" srcset="/img/loading.gif" lazyload alt="bzh"></p>
+<h4 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h4><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dyl.png" srcset="/img/loading.gif" lazyload alt="dyl"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/dyl1.png" srcset="/img/loading.gif" lazyload alt="dyl1"></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.transformation;
+<span class="hljs-keyword">import</span> java.io.FileWriter;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.PrintWriter;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">* 演示 PrintWriter 使用方式</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PrintWriter_</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//PrintWriter printWriter = new PrintWriter(System.out);</span>
+<span class="hljs-type">PrintWriter</span> <span class="hljs-variable">printWriter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileWriter</span>(<span class="hljs-string">&quot;e:\\f2.txt&quot;</span>));
+     printWriter.print(<span class="hljs-string">&quot;hi, 北京你好~~~~&quot;</span>);
+        printWriter.close();<span class="hljs-comment">//flush + 关闭流, 才会将数据写入到文件..</span>
+
+    &#125;
+&#125;
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.printstream;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.io.PrintStream;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">* 演示 PrintStream （字节打印流/输出流）</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PrintStream_</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-type">PrintStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> System.out;
+<span class="hljs-comment">//在默认情况下，PrintStream 输出数据的位置是 标准输出，即显示器</span>
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">public void print(String s) &#123;</span>
+<span class="hljs-comment">if (s == null) &#123;</span>
+<span class="hljs-comment">s = &quot;null&quot;;</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">write(s);</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">*/</span>
+out.print(<span class="hljs-string">&quot;john, hello&quot;</span>);
+<span class="hljs-comment">//因为 print 底层使用的是 write , 所以我们可以直接调用 write 进行打印/输出</span>
+out.write(<span class="hljs-string">&quot;韩顺平,你好&quot;</span>.getBytes());
+out.close();
+<span class="hljs-comment">//我们可以去修改打印流输出的位置/设备</span>
+<span class="hljs-comment">//1. 输出修改成到 &quot;e:\\f1.txt&quot;</span>
+<span class="hljs-comment">//2. &quot;hello, 韩顺平教育~&quot; 就会输出到 e:\f1.txt</span>
+<span class="hljs-comment">//3. public static void setOut(PrintStream out) &#123;</span>
+<span class="hljs-comment">// checkIO();</span>
+<span class="hljs-comment">// setOut0(out); // native 方法，修改了 out</span>
+<span class="hljs-comment">// &#125;</span>
+System.setOut(<span class="hljs-keyword">new</span> <span class="hljs-title class_">PrintStream</span>(<span class="hljs-string">&quot;e:\\f1.txt&quot;</span>));
+System.out.println(<span class="hljs-string">&quot;hello, 韩顺平教育~&quot;</span>);
+&#125;
+&#125;
+printWriter.print(<span class="hljs-string">&quot;hi, 北京你好~~~~&quot;</span>);
+printWriter.close();<span class="hljs-comment">//flush + 关闭流, 才会将数据写入到文件..</span>
+
+&#125;</code></pre></div>
+
+
+
+<h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/pro.png" srcset="/img/loading.gif" lazyload alt="pro"></p>
+<p><strong>一般写法</strong></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.properties_;
+<span class="hljs-keyword">import</span> java.io.BufferedReader;
+<span class="hljs-keyword">import</span> java.io.FileNotFoundException;
+<span class="hljs-keyword">import</span> java.io.FileReader;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Properties01</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//读取 mysql.properties 文件，并得到 ip, user 和 pwd</span>
+<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">br</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;src\\mysql.properties&quot;</span>));
+<span class="hljs-type">String</span> <span class="hljs-variable">line</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;&quot;</span>;
+<span class="hljs-keyword">while</span> ((line = br.readLine()) != <span class="hljs-literal">null</span>) &#123; <span class="hljs-comment">//循环读取</span>
+String[] split = line.split(<span class="hljs-string">&quot;=&quot;</span>);
+<span class="hljs-comment">//如果我们要求指定的 ip 值</span>
+<span class="hljs-keyword">if</span>(<span class="hljs-string">&quot;ip&quot;</span>.equals(split[<span class="hljs-number">0</span>])) &#123;
+System.out.println(split[<span class="hljs-number">0</span>] + <span class="hljs-string">&quot;值是: &quot;</span> + split[<span class="hljs-number">1</span>]);
+&#125;
+&#125;
+br.close();
+&#125;
+&#125;</code></pre></div>
+
+<p><strong>读配置文件</strong></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.properties_;
+<span class="hljs-keyword">import</span> java.io.FileNotFoundException;
+<span class="hljs-keyword">import</span> java.io.FileReader;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.util.Properties;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Properties02</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//使用 Properties 类来读取 mysql.properties 文件</span>
+<span class="hljs-comment">//1. 创建 Properties 对象</span>
+<span class="hljs-type">Properties</span> <span class="hljs-variable">properties</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();
+<span class="hljs-comment">//2. 加载指定配置文件</span>
+properties.load(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>(<span class="hljs-string">&quot;src\\mysql.properties&quot;</span>));
+<span class="hljs-comment">//3. 把 k-v 显示控制台</span>
+properties.list(System.out);
+<span class="hljs-comment">//4. 根据 key 获取对应的值</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> properties.getProperty(<span class="hljs-string">&quot;user&quot;</span>);
+<span class="hljs-type">String</span> <span class="hljs-variable">pwd</span> <span class="hljs-operator">=</span> properties.getProperty(<span class="hljs-string">&quot;pwd&quot;</span>);
+System.out.println(<span class="hljs-string">&quot;用户名=&quot;</span> + user);
+System.out.println(<span class="hljs-string">&quot;密码是=&quot;</span> + pwd);
+&#125;
+&#125;</code></pre></div>
+
+<p><strong>写配置文件</strong></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.properties_;
+<span class="hljs-keyword">import</span> java.io.FileNotFoundException;
+<span class="hljs-keyword">import</span> java.io.FileOutputStream;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.util.Properties;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Properties03</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//使用 Properties 类来创建 配置文件, 修改配置文件内容</span>
+<span class="hljs-type">Properties</span> <span class="hljs-variable">properties</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Properties</span>();
+<span class="hljs-comment">//创建</span>
+<span class="hljs-comment">//1.如果该文件没有 key 就是创建</span>
+<span class="hljs-comment">//2.如果该文件有 key ,就是修改</span>
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment">Properties 父类是 Hashtable ， 底层就是 Hashtable 核心方法</span>
+<span class="hljs-comment">public synchronized V put(K key, V value) &#123;</span>
+<span class="hljs-comment">// Make sure the value is not null</span>
+<span class="hljs-comment">if (value == null) &#123;</span>
+<span class="hljs-comment">throw new NullPointerException();</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">// Makes sure the key is not already in the hashtable. Entry&lt;?,?&gt; tab[] = table;</span>
+<span class="hljs-comment">韩顺平循序渐进学Java 零基础第866页int hash = key.hashCode();</span>
+<span class="hljs-comment">int index = (hash &amp; 0x7FFFFFFF) % tab.length;</span>
+<span class="hljs-comment">@SuppressWarnings(&quot;unchecked&quot;)</span>
+<span class="hljs-comment">Entry&lt;K,V&gt; entry = (Entry&lt;K,V&gt;)tab[index];</span>
+<span class="hljs-comment">for(; entry != null ; entry = entry.next) &#123;</span>
+<span class="hljs-comment">if ((entry.hash == hash) &amp;&amp; entry.key.equals(key)) &#123;</span>
+<span class="hljs-comment">V old = entry.value;</span>
+<span class="hljs-comment">entry.value = value;//如果 key 存在，就替换</span>
+<span class="hljs-comment">return old;</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">addEntry(hash, key, value, index);//如果是新 k, 就 addEntry</span>
+<span class="hljs-comment">return null;</span>
+<span class="hljs-comment">&#125;</span>
+<span class="hljs-comment">*/</span>
+properties.setProperty(<span class="hljs-string">&quot;charset&quot;</span>, <span class="hljs-string">&quot;utf8&quot;</span>);
+properties.setProperty(<span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;汤姆&quot;</span>);<span class="hljs-comment">//注意保存时，是中文的 unicode 码值</span>
+properties.setProperty(<span class="hljs-string">&quot;pwd&quot;</span>, <span class="hljs-string">&quot;888888&quot;</span>);
+<span class="hljs-comment">//将 k-v 存储文件中即可</span>
+properties.store(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-string">&quot;src\\mysql2.properties&quot;</span>), <span class="hljs-literal">null</span>);<span class="hljs-comment">//第二个属性是注解</span>
+System.out.println(<span class="hljs-string">&quot;保存配置文件成功~&quot;</span>);
+&#125;
+&#125;</code></pre></div>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/java/%E5%9F%BA%E7%A1%80/" class="category-chain-item">基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java%E5%9F%BA%E7%A1%80/" class="print-no-link">#java基础</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2023.11.27学习总结</div>
+      <div>http://example.com/2023/11/27/2023-11-27学习总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qsjzxcpyy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/26/2023-11-26%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="2023.11.26学习总结">
+                        <span class="hidden-mobile">2023.11.26学习总结</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
