@@ -16,17 +16,17 @@
   <meta name="author" content="qsjzxcpyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Filter过滤器作用：其基本功能就是对Servlet容器调用Servlet的过程进行拦截，从而在Servlet进行响应处理前后实现一些特殊功能。 例如统一在响应之前统一处理乱码问题，设置统一编码。 1.Xml文件配置Filter过滤器的配置信息中包含多个元素，这些元素分别具有不同的作用，具体如下： （1）根元素用于注册一个Filter。 （2）子元素用于设置Filter名称。 （3）子元素用于设">
+    <meta name="description" content="Filter过滤器作用：其基本功能就是对Servlet容器调用Servlet的过程进行拦截，从而在Servlet进行响应处理前后实现一些特殊功能。 例如统一在响应之前统一处理乱码问题，设置统一编码。 1.Xml文件配置Filter过滤器的配置信息中包含多个元素，这些元素分别具有不同的作用，具体如下： （1）&lt;filter&gt;根元素用于注册一个Filter。 （2）&lt;filter-n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Filter过滤器，转发，重定向细节，cookie用法">
 <meta property="og:url" content="http://example.com/2023/12/11/2023-12-11%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="小齐的blog">
-<meta property="og:description" content="Filter过滤器作用：其基本功能就是对Servlet容器调用Servlet的过程进行拦截，从而在Servlet进行响应处理前后实现一些特殊功能。 例如统一在响应之前统一处理乱码问题，设置统一编码。 1.Xml文件配置Filter过滤器的配置信息中包含多个元素，这些元素分别具有不同的作用，具体如下： （1）根元素用于注册一个Filter。 （2）子元素用于设置Filter名称。 （3）子元素用于设">
+<meta property="og:description" content="Filter过滤器作用：其基本功能就是对Servlet容器调用Servlet的过程进行拦截，从而在Servlet进行响应处理前后实现一些特殊功能。 例如统一在响应之前统一处理乱码问题，设置统一编码。 1.Xml文件配置Filter过滤器的配置信息中包含多个元素，这些元素分别具有不同的作用，具体如下： （1）&lt;filter&gt;根元素用于注册一个Filter。 （2）&lt;filter-n">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/Filter.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/peizhi.png">
 <meta property="article:published_time" content="2023-12-11T11:55:14.000Z">
-<meta property="article:modified_time" content="2023-12-11T15:17:34.109Z">
+<meta property="article:modified_time" content="2023-12-11T15:41:47.895Z">
 <meta property="article:author" content="qsjzxcpyy">
 <meta property="article:tag" content="JavaWeb">
 <meta property="article:tag" content="Filter">
@@ -225,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          3.6k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
         
-          28 分钟
+          31 分钟
         
       </span>
     
@@ -281,28 +281,32 @@
                 <h4 id="Filter过滤器"><a href="#Filter过滤器" class="headerlink" title="Filter过滤器"></a>Filter过滤器</h4><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><p>其基本功能就是对Servlet容器调用Servlet的过程进行拦截，从而在Servlet进行响应处理前后实现一些特殊功能。</p>
 <p>例如统一在响应之前统一处理乱码问题，设置统一编码。</p>
 <h5 id="1-Xml文件配置Filter"><a href="#1-Xml文件配置Filter" class="headerlink" title="1.Xml文件配置Filter"></a>1.Xml文件配置Filter</h5><p>过滤器的配置信息中包含多个元素，这些元素分别具有不同的作用，具体如下：</p>
-<p>（1）<filter>根元素用于注册一个Filter。</p>
-<p>（2）<filter-name>子元素用于设置Filter名称。</p>
-<p>（3）<filter-class>子元素用于设置Filter类的完整名称。</p>
-<p>（4）<filter-mapping>根元素用于设置一个过滤器所拦截的资源。</p>
-<p>（5）<filter-name>子元素必须与<filter>中的<filter-name>子元素相同。</p>
-<p>（6）<url-pattern>子元素用于匹配用户请求的URL，例如“&#x2F;MyServlet”，这个URL还可以使用通配符“<em>”来表示，例如“</em>.do”适用于所有以“.do”结尾的Servlet路径。</p>
-<h5 id="2．使用通配符-拦截用户的所有请求"><a href="#2．使用通配符-拦截用户的所有请求" class="headerlink" title="**2．使用通配符 &#x2F;***拦截用户的所有请求"></a>**2．使用通配符 &#x2F;***<strong>拦截用户的所有请求</strong></h5><p>Filter的<filter-mapping>元素用于配置过滤器拦截的资源信息，如果想让过滤器拦截所有的请求访问，那么需要使用通配符“*”来实现，具体示例如下。</p>
-<filter-mapping>
+<p>（1）<code>&lt;filter&gt;</code>根元素用于注册一个Filter。</p>
+<p>（2）<code>&lt;filter-name&gt;</code>子元素用于设置Filter名称。</p>
+<p>（3）<code>&lt;filter-class&gt;</code>子元素用于设置Filter类的完整名称。</p>
+<p>（4）<code>&lt;filter-mapping&gt;</code>根元素用于设置一个过滤器所拦截的资源。</p>
+<p>（5）<code>&lt;filter-name&gt;</code>子元素必须与<code>&lt;filter&gt;</code>中的<code>&lt;filter-name&gt;</code>子元素相同。</p>
+<p>（6）<code>&lt;url-pattern&gt;</code>子元素用于匹配用户请求的URL，例如“&#x2F;MyServlet”，这个URL还可以使用通配符“<em>”来表示，例如“</em>.do”适用于所有以“.do”结尾的Servlet路径。</p>
+<h5 id="2．使用通配符-拦截用户的所有请求"><a href="#2．使用通配符-拦截用户的所有请求" class="headerlink" title="**2．使用通配符 &#x2F;***拦截用户的所有请求"></a>**2．使用通配符 &#x2F;***<strong>拦截用户的所有请求</strong></h5><p>Filter的<code>&lt;filter-mapping&gt;</code>元素用于配置过滤器拦截的资源信息，如果想让过滤器拦截所有的请求访问，那么需要使用通配符“*”来实现，具体示例如下。</p>
+<div class="code-wrapper"><pre><code class="hljs jsp">&lt;filter-mapping&gt;
 
-<p><filter-name>Filter</filter-name></p>
-<p><url-pattern>&#x2F;*</url-pattern></p>
-</filter-mapping>
+&lt;filter-name&gt;Filter&lt;/filter-name&gt;
 
-<h5 id="3．拦截不同方式的访问请求"><a href="#3．拦截不同方式的访问请求" class="headerlink" title="3．拦截不同方式的访问请求"></a>3．拦截不同方式的访问请求</h5><p>在web.xml文件中，一个<filter-mapping>元素用于配置一个Filter所负责拦截的资源。 <filter-mapping>元素中有一个特殊的子元素<dispatcher>，该元素用于指定过滤器所拦截的资源被Servlet容器调用的方式，<dispatcher>元素的值共有4个，具体如下：</p>
+&lt;url-pattern&gt;<span class="hljs-comment">/*&lt;/url-pattern&gt;</span>
+<span class="hljs-comment"></span>
+<span class="hljs-comment">&lt;/filter-mapping&gt;</span></code></pre></div>
+
+
+
+<h5 id="3．拦截不同方式的访问请求"><a href="#3．拦截不同方式的访问请求" class="headerlink" title="3．拦截不同方式的访问请求"></a>3．拦截不同方式的访问请求</h5><p>在web.xml文件中，一个<code>&lt;filter-mapping&gt;</code>元素用于配置一个Filter所负责拦截的资源。 <code>&lt;filter-mapping&gt;</code>元素中有一个特殊的子元素<code>&lt;dispatcher&gt;</code>，该元素用于指定过滤器所拦截的资源被Servlet容器调用的方式，<code>&lt;dispatcher&gt;</code>元素的值共有4个，具体如下：</p>
 <p>1）REQUEST </p>
 <p>当用户直接访问页面时，Web容器将会调用过滤器。如果目标资源是通过RequestDispatcher的include()或forward()方法访问时，那么该过滤器将不会被调用。</p>
 <p>2）INCLUDE</p>
-<p>Ø如果目标资源是通过RequestDispatcher的include()方法访问时，那么该过滤器将被调用。除此之外，该过滤器不会被调用。</p>
+<p>如果目标资源是通过RequestDispatcher的include()方法访问时，那么该过滤器将被调用。除此之外，该过滤器不会被调用。</p>
 <p>3）FORWARD </p>
-<p>Ø如果目标资源是通过RequestDispatcher的forward()方法访问时，那么该过滤器将被调用。除此之外，该过滤器不会被调用。</p>
+<p>如果目标资源是通过RequestDispatcher的forward()方法访问时，那么该过滤器将被调用。除此之外，该过滤器不会被调用。</p>
 <p>4）ERROR </p>
-<p>Ø如果目标资源是通过声明式异常处理机制调用时，那么该过滤器将被调用。除此之外，过滤器不会被调用。</p>
+<p>如果目标资源是通过声明式异常处理机制调用时，那么该过滤器将被调用。除此之外，过滤器不会被调用。</p>
 <h5 id="4-在注解中配置Filter"><a href="#4-在注解中配置Filter" class="headerlink" title="4.在注解中配置Filter"></a>4.在注解中配置Filter</h5><div class="code-wrapper"><pre><code class="hljs jsp"><span class="hljs-meta">@WebFilter(/XXXX)</span> <span class="hljs-comment">//在访问/XXXX之前先进行拦截。</span>
 
 如果有多个Filter拦截同一个servlet，会以Filter名称的字典序进行排序顺序进行执行，过滤。
