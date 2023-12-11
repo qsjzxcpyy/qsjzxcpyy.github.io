@@ -16,24 +16,27 @@
   <meta name="author" content="qsjzxcpyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="java文档注释作用：程序的说明文档，以一整套网页文件形式体现 基本格式：&#x2F;**    * author 小明    *version 1.0    * ... *&#x2F;  生成文档命令：javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java  [1]: https:&#x2F;&#x2F;c.biancheng.net&#x2F;view&#x2F;6262.html	“文档注">
+    <meta name="description" content="Filter过滤器作用：其基本功能就是对Servlet容器调用Servlet的过程进行拦截，从而在Servlet进行响应处理前后实现一些特殊功能。 例如统一在响应之前统一处理乱码问题，设置统一编码。 1.Xml文件配置Filter过滤器的配置信息中包含多个元素，这些元素分别具有不同的作用，具体如下： （1）根元素用于注册一个Filter。 （2）子元素用于设置Filter名称。 （3）子元素用于设">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2023_11_14当日笔记及总结——java基础知识">
-<meta property="og:url" content="http://example.com/2023/11/14/2023-11-14%E5%BD%93%E6%97%A5%E7%AC%94%E8%AE%B0%E5%8F%8A%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="Filter过滤器，转发，重定向细节，cookie用法">
+<meta property="og:url" content="http://example.com/2023/12/11/2023-12-11%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="小齐的blog">
-<meta property="og:description" content="java文档注释作用：程序的说明文档，以一整套网页文件形式体现 基本格式：&#x2F;**    * author 小明    *version 1.0    * ... *&#x2F;  生成文档命令：javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java  [1]: https:&#x2F;&#x2F;c.biancheng.net&#x2F;view&#x2F;6262.html	“文档注">
+<meta property="og:description" content="Filter过滤器作用：其基本功能就是对Servlet容器调用Servlet的过程进行拦截，从而在Servlet进行响应处理前后实现一些特殊功能。 例如统一在响应之前统一处理乱码问题，设置统一编码。 1.Xml文件配置Filter过滤器的配置信息中包含多个元素，这些元素分别具有不同的作用，具体如下： （1）根元素用于注册一个Filter。 （2）子元素用于设置Filter名称。 （3）子元素用于设">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/Operator_priority.png">
-<meta property="article:published_time" content="2023-11-14T02:11:22.000Z">
-<meta property="article:modified_time" content="2023-12-11T12:32:03.355Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/Filter.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/peizhi.png">
+<meta property="article:published_time" content="2023-12-11T11:55:14.000Z">
+<meta property="article:modified_time" content="2023-12-11T15:17:34.109Z">
 <meta property="article:author" content="qsjzxcpyy">
-<meta property="article:tag" content="java基础">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Filter">
+<meta property="article:tag" content="cookie">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/Operator_priority.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/Filter.png">
   
   
   
-  <title>2023_11_14当日笔记及总结——java基础知识 - 小齐的blog</title>
+  <title>Filter过滤器，转发，重定向细节，cookie用法 - 小齐的blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2023_11_14当日笔记及总结——java基础知识"></span>
+            <span id="subtitle" data-typed-text="Filter过滤器，转发，重定向细节，cookie用法"></span>
           
         </div>
 
@@ -210,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-14 10:11" pubdate>
-          2023年11月14日 上午
+        <time datetime="2023-12-11 19:55" pubdate>
+          2023年12月11日 晚上
         </time>
       </span>
     
@@ -222,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          970 字
+          3.3k 字
         
       </span>
     
@@ -233,7 +236,7 @@
         
         
         
-          9 分钟
+          28 分钟
         
       </span>
     
@@ -270,77 +273,117 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2023_11_14当日笔记及总结——java基础知识</h1>
+            <h1 id="seo-header">Filter过滤器，转发，重定向细节，cookie用法</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="java文档注释"><a href="#java文档注释" class="headerlink" title="java文档注释"></a>java文档注释</h4><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><p>程序的说明文档，以一整套网页文件形式体现</p>
-<h5 id="基本格式："><a href="#基本格式：" class="headerlink" title="基本格式："></a>基本格式：</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span>
-<span class="hljs-comment">   * author 小明</span>
-<span class="hljs-comment">   *version 1.0</span>
-<span class="hljs-comment">   * ...</span>
-<span class="hljs-comment">*/</span></code></pre></div>
+                <h4 id="Filter过滤器"><a href="#Filter过滤器" class="headerlink" title="Filter过滤器"></a>Filter过滤器</h4><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><p>其基本功能就是对Servlet容器调用Servlet的过程进行拦截，从而在Servlet进行响应处理前后实现一些特殊功能。</p>
+<p>例如统一在响应之前统一处理乱码问题，设置统一编码。</p>
+<h5 id="1-Xml文件配置Filter"><a href="#1-Xml文件配置Filter" class="headerlink" title="1.Xml文件配置Filter"></a>1.Xml文件配置Filter</h5><p>过滤器的配置信息中包含多个元素，这些元素分别具有不同的作用，具体如下：</p>
+<p>（1）<filter>根元素用于注册一个Filter。</p>
+<p>（2）<filter-name>子元素用于设置Filter名称。</p>
+<p>（3）<filter-class>子元素用于设置Filter类的完整名称。</p>
+<p>（4）<filter-mapping>根元素用于设置一个过滤器所拦截的资源。</p>
+<p>（5）<filter-name>子元素必须与<filter>中的<filter-name>子元素相同。</p>
+<p>（6）<url-pattern>子元素用于匹配用户请求的URL，例如“&#x2F;MyServlet”，这个URL还可以使用通配符“<em>”来表示，例如“</em>.do”适用于所有以“.do”结尾的Servlet路径。</p>
+<h5 id="2．使用通配符-拦截用户的所有请求"><a href="#2．使用通配符-拦截用户的所有请求" class="headerlink" title="**2．使用通配符 &#x2F;***拦截用户的所有请求"></a>**2．使用通配符 &#x2F;***<strong>拦截用户的所有请求</strong></h5><p>Filter的<filter-mapping>元素用于配置过滤器拦截的资源信息，如果想让过滤器拦截所有的请求访问，那么需要使用通配符“*”来实现，具体示例如下。</p>
+<filter-mapping>
 
-<h5 id="生成文档命令："><a href="#生成文档命令：" class="headerlink" title="生成文档命令："></a>生成文档命令：</h5><div class="code-wrapper"><pre><code class="hljs java">javadoc -d d:\\...(要生成文档所要存的目录) -author -version test.java</code></pre></div>
+<p><filter-name>Filter</filter-name></p>
+<p><url-pattern>&#x2F;*</url-pattern></p>
+</filter-mapping>
 
-<p>[1]: <a target="_blank" rel="noopener" href="https://c.biancheng.net/view/6262.html">https://c.biancheng.net/view/6262.html</a>	“文档注释详解”</p>
-<h4 id="API-中文文档以及其他资料"><a href="#API-中文文档以及其他资料" class="headerlink" title="API 中文文档以及其他资料"></a>API 中文文档以及其他资料</h4><p>[2]: <a target="_blank" rel="noopener" href="https://www.matools.com/">https://www.matools.com/</a>	“API中文文档”</p>
-<h4 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h4><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/Operator_priority.png" srcset="/img/loading.gif" lazyload alt="运算符优先级"></p>
-<h4 id="标识符命名规则与规范"><a href="#标识符命名规则与规范" class="headerlink" title="标识符命名规则与规范"></a>标识符命名规则与规范</h4><ol>
-<li><p>包名包含多个字母时 小写 （aaa.bbb.ccc），com.公司名.项目名.业务模块名。</p>
-<p>1.1 例如（<code>com.sina.crm.user //用户模块</code>)</p>
-</li>
-<li><p>类名，接口名，所有单词首字母大写（AaaBbbCcc)</p>
-</li>
-<li><p>变量名，方法名，第一个单词首字母小写，从第二个开始，首字母大写 （aaaBbbCcc)</p>
-</li>
-<li><p>常量名，所有字母大写，多个单词时 ，用下划线连接（AAA_BBB_CCC)</p>
-</li>
-</ol>
-<h4 id="break-指定跳出的标签层（不到迫不得已不要用）"><a href="#break-指定跳出的标签层（不到迫不得已不要用）" class="headerlink" title="break 指定跳出的标签层（不到迫不得已不要用）"></a>break 指定跳出的标签层（不到迫不得已不要用）</h4><div class="code-wrapper"><pre><code class="hljs c++">
-lable1:
-<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i ++)&#123;
-lable2:
-   <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j ++)&#123;
-   lable3:
-       <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; cnt; k ++)&#123;
-          <span class="hljs-keyword">break</span> lable1;
-       &#125;
-   &#125;
+<h5 id="3．拦截不同方式的访问请求"><a href="#3．拦截不同方式的访问请求" class="headerlink" title="3．拦截不同方式的访问请求"></a>3．拦截不同方式的访问请求</h5><p>在web.xml文件中，一个<filter-mapping>元素用于配置一个Filter所负责拦截的资源。 <filter-mapping>元素中有一个特殊的子元素<dispatcher>，该元素用于指定过滤器所拦截的资源被Servlet容器调用的方式，<dispatcher>元素的值共有4个，具体如下：</p>
+<p>1）REQUEST </p>
+<p>当用户直接访问页面时，Web容器将会调用过滤器。如果目标资源是通过RequestDispatcher的include()或forward()方法访问时，那么该过滤器将不会被调用。</p>
+<p>2）INCLUDE</p>
+<p>Ø如果目标资源是通过RequestDispatcher的include()方法访问时，那么该过滤器将被调用。除此之外，该过滤器不会被调用。</p>
+<p>3）FORWARD </p>
+<p>Ø如果目标资源是通过RequestDispatcher的forward()方法访问时，那么该过滤器将被调用。除此之外，该过滤器不会被调用。</p>
+<p>4）ERROR </p>
+<p>Ø如果目标资源是通过声明式异常处理机制调用时，那么该过滤器将被调用。除此之外，过滤器不会被调用。</p>
+<h5 id="4-在注解中配置Filter"><a href="#4-在注解中配置Filter" class="headerlink" title="4.在注解中配置Filter"></a>4.在注解中配置Filter</h5><div class="code-wrapper"><pre><code class="hljs jsp"><span class="hljs-meta">@WebFilter(/XXXX)</span> <span class="hljs-comment">//在访问/XXXX之前先进行拦截。</span>
+
+如果有多个Filter拦截同一个servlet，会以Filter名称的字典序进行排序顺序进行执行，过滤。
+
+<span class="hljs-meta">@WebFilter(disptchersTypes = &#123;DisptcherType.FOWARD, ... //可以有多个&#125;，urlPatterns = &#123;&quot;/first.jsp&quot;,...&#125;)</span></code></pre></div>
+
+<h5 id="5-执行流程"><a href="#5-执行流程" class="headerlink" title="5.执行流程"></a>5.执行流程</h5><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/Filter.png" srcset="/img/loading.gif" lazyload alt="Filter"></p>
+<h5 id="6-获取Xml配置信息"><a href="#6-获取Xml配置信息" class="headerlink" title="6.获取Xml配置信息"></a>6.获取Xml配置信息</h5><p>为了获取Filter程序在web.xml文件中的配置信息，Servlet API提供了一个FilterConfig接口，该接口封装了Filter程序在web.xml中的所有注册信息，并且提供了一系列获取这些配置信息的方法，具体如表所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/peizhi.png" srcset="/img/loading.gif" lazyload alt="peizhi"></p>
+<p><strong>例如</strong></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@WebFilter(	urlPatterns = &#123;&quot;/Hello&quot;&#125;,initParams = &#123;</span>
+<span class="hljs-meta">@webInitParam(name = &quot;ecoding&quot;,value = &quot;GBK&quot;)</span>
+<span class="hljs-meta">&#125;)</span>
+ <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span>&#123;
+     
+     <span class="hljs-keyword">private</span> String  characterEncoding;
+     <span class="hljs-keyword">private</span> FilterConfig filterConfig;
+     
+     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">(FilterConfig config)</span> <span class="hljs-keyword">throws</span> ServletException &#123;
+       filterConfig = config;
+    &#125;
+      <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span> &#123;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest req, ServletResponse resp, FilterChain chain)</span> <span class="hljs-keyword">throws</span> ServletException, IOException &#123;
+        characterEncoding = filterConfig.getInitParameter(<span class="hljs-string">&quot;ecoding&quot;</span>);
+        req.getWriter().println(characterEncoding);
+        chain.doFilter(req, resp);
+    &#125;
+ &#125;
+</code></pre></div>
+
+<h4 id="Cookie使用方法"><a href="#Cookie使用方法" class="headerlink" title="Cookie使用方法"></a>Cookie使用方法</h4><ul>
+<li><p>在HttpServletRequest req 中获取cookie数组</p>
+<p>在Filter中要向下转型一下</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@WebFilter(&quot;/*&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AutoLoginFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Filter</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">doFilter</span><span class="hljs-params">(ServletRequest request, ServletResponse response, FilterChain chain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException &#123;
+response.setContentType(<span class="hljs-string">&quot;text/html;charset=utf-8&quot;</span>);
+
+HttpServletRequest req=(HttpServletRequest)request;
+Cookie cookies[]=req.getCookies();
+
+String userInfo=<span class="hljs-literal">null</span>;
+<span class="hljs-keyword">if</span>(cookies!=<span class="hljs-literal">null</span>) &#123;
+<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;cookies.length;i++) &#123;
+
+<span class="hljs-keyword">if</span>(<span class="hljs-string">&quot;userInfo&quot;</span>.equals(cookies[i].getName())) &#123;
+userInfo=cookies[i].getValue();
+<span class="hljs-keyword">break</span>;
 &#125;
-<span class="hljs-comment">//break 跳出指定的循环层;</span>
-<span class="hljs-comment">//continue 与 break 类似</span></code></pre></div>
+&#125;
+&#125;
 
-<h4 id="java零散知识点"><a href="#java零散知识点" class="headerlink" title="java零散知识点"></a>java零散知识点</h4><ol>
-<li>局部变量不能加修饰符。</li>
-<li>this指向对象本身， this 可以访问，属性，方法， 构造器。</li>
-<li>this 只能在构造器中访问其他的构造器，并且代码必须写在第一行。</li>
-</ol>
-<h4 id="IDEA-快捷键设置"><a href="#IDEA-快捷键设置" class="headerlink" title="IDEA 快捷键设置"></a>IDEA 快捷键设置</h4><ul>
-<li><p>删除当前行， Ctrl + d</p>
+chain.doFilter(request, response);
+&#125;</code></pre></div>
 </li>
-<li><p>复制当前行到下一行 ，alt + shift + 向下箭头</p>
+<li><p>新建cookie对象，以及属性设置</p>
+<div class="code-wrapper"><pre><code class="hljs java">Cookie cookie=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Cookie</span>(<span class="hljs-string">&quot;userInfo&quot;</span>,userName+<span class="hljs-string">&quot;-&quot;</span>+password);
+cookie.setMaxAge(Integer.parseInt(autoLogin));<span class="hljs-comment">//已秒为单位</span>
+cookie.setPath(<span class="hljs-string">&quot;/AutoLoginByFilter&quot;</span>);
+response.addCookie(cookie);</code></pre></div>
 </li>
-<li><p>补全代码， alt + &#x2F;</p>
-</li>
-<li><p>导入该行需要的类&#x2F;抛出异常，alt + enter</p>
-</li>
-<li><p>快速格式化代码，Ctrl + alt + L</p>
-</li>
-<li><p>快速运行程序，alt + R</p>
-</li>
-<li><p>生成构造器，alt + insert</p>
-</li>
-<li><p>查看类的层级关系 ，Ctrl + H</p>
-</li>
-<li><p>查看方法再哪个类中， Ctrl + B</p>
-</li>
-<li><p>自动分配变量名， 在new类的后边加<code>.var //例如：(new Scanner(System.in)).var</code></p>
-</li>
-<li><p>添加if try catch … ctrl + alt + t;</p>
-</li>
-<li><p>回到上次一代码位置，追代码的时候使用，Fn+J，向前追是 Fn+L</p>
+<li><p>删除cookie对象</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-type">Cookie</span> <span class="hljs-variable">cookie</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cookie</span>(<span class="hljs-string">&quot;userInfo&quot;</span>,<span class="hljs-string">&quot;&quot;</span>);
+        cookie.setMaxAge(<span class="hljs-number">0</span>);
+        response.addCookie(cookie);</code></pre></div></li>
+</ul>
+<h4 id="重定向和转发细节"><a href="#重定向和转发细节" class="headerlink" title="重定向和转发细节"></a>重定向和转发细节</h4><ul>
+<li><p>一般使用变量来进行url的设置（防止项目改名，之后的更改）</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//class页面使用url设置</span>
+response.sendRedirect(request.getContextPath() + <span class="hljs-string">&quot;/index.jsp&quot;</span>);
+ 
+<span class="hljs-comment">//Jsp页面使用url设置</span>
+ &lt;form action=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/LoginServlet&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span>&gt;
+ 
+ <span class="hljs-comment">//重定向不能使用变量形式</span>
+ request.getRequestDispatcher(<span class="hljs-string">&quot;login.jsp&quot;</span>).forward(request,response);</code></pre></div>
+
+<p><strong>重定向不能使用变量定义url形式</strong></p>
+<p><del>request.getRequestDispatcher(request.getContextPath() + “&#x2F;login.jsp”).forward(request,response);</del></p>
 </li>
 </ul>
 
@@ -361,15 +404,8 @@ lable2:
     
       <span class="category-chain">
         
-  <a href="/categories/java/" class="category-chain-item">java</a>
+  <a href="/categories/JavaWeb/" class="category-chain-item">JavaWeb</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/java/%E5%9F%BA%E7%A1%80/" class="category-chain-item">基础</a>
-  
-  
-
   
 
       </span>
@@ -383,7 +419,11 @@ lable2:
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java%E5%9F%BA%E7%A1%80/" class="print-no-link">#java基础</a>
+        <a href="/tags/JavaWeb/" class="print-no-link">#JavaWeb</a>
+      
+        <a href="/tags/Filter/" class="print-no-link">#Filter</a>
+      
+        <a href="/tags/cookie/" class="print-no-link">#cookie</a>
       
     </div>
   
@@ -395,8 +435,8 @@ lable2:
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2023_11_14当日笔记及总结——java基础知识</div>
-      <div>http://example.com/2023/11/14/2023-11-14当日笔记及总结/</div>
+      <div>Filter过滤器，转发，重定向细节，cookie用法</div>
+      <div>http://example.com/2023/12/11/2023-12-11学习总结/</div>
     </div>
     <div class="license-meta">
       
@@ -408,7 +448,7 @@ lable2:
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月14日</div>
+          <div>2023年12月11日</div>
         </div>
       
       
@@ -440,15 +480,15 @@ lable2:
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/15/2023-11-15%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="2023.11.15学习总结--java基础">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2023.11.15学习总结--java基础</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/12/09/2023-12-9%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" title="Jstl和El表达式">
+                        <span class="hidden-mobile">Jstl和El表达式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
