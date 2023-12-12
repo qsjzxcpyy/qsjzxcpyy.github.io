@@ -16,19 +16,22 @@
   <meta name="author" content="qsjzxcpyy">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="2023.12.12学习总结">
+    <meta name="description" content="TCP 传输前需要先建立连接，形成传输数据通道。  传输前三次握手方式，是可靠的。  可进行大量数据的传输。  传输完后需释放，已建立的连接，效率低。   UDP 不需要建立连接 每个数据报大小控制在64k内，不适合大量数据传输。 不可靠 发送数据后，无需释放资源，速度快 举例：发短信  InetAddress作用： 1.获取本机信息，主机名，ip  2.通过域名，获取ip   package c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCP,UDP,InetAddress">
 <meta property="og:url" content="http://example.com/2023/12/12/2023-12-12%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="小齐的blog">
+<meta property="og:description" content="TCP 传输前需要先建立连接，形成传输数据通道。  传输前三次握手方式，是可靠的。  可进行大量数据的传输。  传输完后需释放，已建立的连接，效率低。   UDP 不需要建立连接 每个数据报大小控制在64k内，不适合大量数据传输。 不可靠 发送数据后，无需释放资源，速度快 举例：发短信  InetAddress作用： 1.获取本机信息，主机名，ip  2.通过域名，获取ip   package c">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-12T09:01:15.000Z">
-<meta property="article:modified_time" content="2023-12-12T09:01:16.019Z">
+<meta property="article:modified_time" content="2023-12-12T14:20:14.298Z">
 <meta property="article:author" content="qsjzxcpyy">
+<meta property="article:tag" content="Java网络编程">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>2023.12.12学习总结 - 小齐的blog</title>
+  <title>TCP,UDP,InetAddress - 小齐的blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -194,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2023.12.12学习总结"></span>
+            <span id="subtitle" data-typed-text="TCP,UDP,InetAddress"></span>
           
         </div>
 
@@ -217,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          10k 字
         
       </span>
     
@@ -228,7 +231,7 @@
         
         
         
-          1 分钟
+          85 分钟
         
       </span>
     
@@ -265,12 +268,416 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2023.12.12学习总结</h1>
+            <h1 id="seo-header">TCP,UDP,InetAddress</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><ul>
+<li><p>传输前需要先建立连接，形成传输数据通道。</p>
+</li>
+<li><p>传输前三次握手方式，是可靠的。</p>
+</li>
+<li><p>可进行大量数据的传输。</p>
+</li>
+<li><p>传输完后需释放，已建立的连接，效率低。</p>
+</li>
+</ul>
+<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><ul>
+<li>不需要建立连接</li>
+<li>每个数据报大小控制在64k内，不适合大量数据传输。</li>
+<li>不可靠</li>
+<li>发送数据后，无需释放资源，速度快</li>
+<li>举例：发短信</li>
+</ul>
+<h4 id="InetAddress"><a href="#InetAddress" class="headerlink" title="InetAddress"></a>InetAddress</h4><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h5><ul>
+<li><p><strong>1.获取本机信息，主机名，ip</strong></p>
+</li>
+<li><p><strong>2.通过域名，获取ip</strong></p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.qsj.test;
+
+<span class="hljs-keyword">import</span> java.net.InetAddress;
+<span class="hljs-keyword">import</span> java.net.UnknownHostException;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Tcp</span> &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> UnknownHostException &#123;
+
+       
+
+        <span class="hljs-comment">//localHost 存的是主机的名称和ip地址 , XXX/192.168.28.2</span>
+        <span class="hljs-type">InetAddress</span> <span class="hljs-variable">localHost</span> <span class="hljs-operator">=</span> InetAddress.getLocalHost();
+        System.out.println(localHost);
+
+        <span class="hljs-comment">//通过主机名称获取对象 存的是主机的名称和ip地址 ,XXX/192.164.38.2</span>
+        <span class="hljs-type">InetAddress</span> <span class="hljs-variable">qi</span> <span class="hljs-operator">=</span> InetAddress.getByName(<span class="hljs-string">&quot;qi&quot;</span>);
+        System.out.println(qi);
+
+        <span class="hljs-comment">//通过域名获取InetAddress对象，对象存的是域名/ip , www.baidui.com/103.39.231.155</span>
+        <span class="hljs-type">InetAddress</span> <span class="hljs-variable">byName</span> <span class="hljs-operator">=</span> InetAddress.getByName(<span class="hljs-string">&quot;www.baidui.com&quot;</span>);
+        System.out.println(byName);
+
+
+        <span class="hljs-comment">//通过对象获取IP地址, 192.168.38.2</span>
+        <span class="hljs-type">String</span> <span class="hljs-variable">hostAddress</span> <span class="hljs-operator">=</span> localHost.getHostAddress();
+        <span class="hljs-type">String</span> <span class="hljs-variable">hostAddress2</span> <span class="hljs-operator">=</span> byName.getHostAddress();
+        System.out.println(hostAddress);
+        System.out.println(hostAddress2);
+
+        
+        <span class="hljs-comment">//通过对象获取主机名或域名</span>
+        <span class="hljs-type">String</span> <span class="hljs-variable">hostName</span> <span class="hljs-operator">=</span> localHost.getHostName();<span class="hljs-comment">//qi</span>
+        <span class="hljs-type">String</span> <span class="hljs-variable">hostAddress1</span> <span class="hljs-operator">=</span> byName.getHostName();<span class="hljs-comment">//www.baidui.com</span>
+        System.out.println(hostName);
+        System.out.println(hostAddress1);
+
+
+
+    &#125;
+&#125;
+</code></pre></div>
+
+<h4 id="TCP——Socket"><a href="#TCP——Socket" class="headerlink" title="TCP——Socket"></a>TCP——Socket</h4><ul>
+<li><p>服务器实例化一个 ServerSocket 对象，表示通过服务器上的端口通信。</p>
+</li>
+<li><p>服务器调用 ServerSocket 类的 accept() 方法，该方法将一直等待(阻塞），直到客户端连接到服务器上给定的端口。</p>
+</li>
+<li><p>服务器正在等待时，一个客户端实例化一个 Socket 对象，指定服务器名称和端口号来请求连接，连接成功后返回一个Socket对象。</p>
+</li>
+<li><p>Socket 类的构造函数试图将客户端连接到指定的服务器和端口号。如果通信被建立，则在客户端创建一个 Socket 对象能够与服务器进行通信。</p>
+</li>
+<li><p>在服务器端，accept() 方法返回服务器上一个新的 socket 引用，该 socket 连接到客户端的 socket。</p>
+</li>
+<li><p>关闭输出流<code>socket.shutdownOutput()</code></p>
+<ul>
+<li>当调用 <code>socket.shutdownOutput()</code> 之后，套接字的输出流将被关闭。这意味着调用 <code>write()</code> 方法向输出流写入数据将会抛出异常（<code>IOException</code>）。</li>
+<li>关闭套接字的输出流不会关闭套接字的输入流。因此，仍然可以通过套接字的输入流接收来自远程主机的数据。</li>
+<li>调用 <code>socket.shutdownOutput()</code> 的主要用途是在通信完成后显式地告知远程主机，不再发送更多的数据。这在某些协议或通信模式中是很有用的，例如在 HTTP 请求&#x2F;响应中，当客户端发送完请求后关闭输出流，告知服务器请求已完成。</li>
+</ul>
+</li>
+<li><p>服务端细节：这个 ServerSocket 可以通过 accept() 返回多个 Socket[多个客户端连接服务器的并发]</p>
+</li>
+<li><p>当调用 <code>bufferedWriter.flush()</code> 方法时，它会强制将缓冲区中的数据立即写入目标输出流，即使缓冲区中的数据未达到缓冲区的大小或缓冲区尚未填满。一般情况下，缓冲流会自动在适当的时机将数据写入目标输出流，例如当缓冲区满或缓冲流关闭时。但有时需要手动调用 <code>flush()</code> 方法，以确保及时地将数据写入目标输出流。</p>
+</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 文件名 GreetingClient.java</span>
+ <span class="hljs-comment">// args[0] 是命令行输入传入的第一个参数</span>
+<span class="hljs-keyword">import</span> java.net.*;
+<span class="hljs-keyword">import</span> java.io.*;
+ 
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GreetingClient</span>
+&#123;
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String [] args)</span>
+   &#123;
+      <span class="hljs-type">String</span> <span class="hljs-variable">serverName</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">0</span>];
+      <span class="hljs-type">int</span> <span class="hljs-variable">port</span> <span class="hljs-operator">=</span> Integer.parseInt(args[<span class="hljs-number">1</span>]);
+      <span class="hljs-keyword">try</span>
+      &#123;
+         System.out.println(<span class="hljs-string">&quot;连接到主机：&quot;</span> + serverName + <span class="hljs-string">&quot; ，端口号：&quot;</span> + port);
+         <span class="hljs-type">Socket</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(serverName, port);
+         System.out.println(<span class="hljs-string">&quot;远程主机地址：&quot;</span> + client.getRemoteSocketAddress());
+         <span class="hljs-type">OutputStream</span> <span class="hljs-variable">outToServer</span> <span class="hljs-operator">=</span> client.getOutputStream();
+         <span class="hljs-type">DataOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataOutputStream</span>(outToServer);
+ 
+         out.writeUTF(<span class="hljs-string">&quot;Hello from &quot;</span> + client.getLocalSocketAddress());
+         <span class="hljs-type">InputStream</span> <span class="hljs-variable">inFromServer</span> <span class="hljs-operator">=</span> client.getInputStream();
+         <span class="hljs-type">DataInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataInputStream</span>(inFromServer);
+         System.out.println(<span class="hljs-string">&quot;服务器响应： &quot;</span> + in.readUTF());
+         client.close();
+      &#125;<span class="hljs-keyword">catch</span>(IOException e)
+      &#123;
+         e.printStackTrace();
+      &#125;
+   &#125;
+&#125;</code></pre></div>
+
+<h5 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 文件名 GreetingServer.java</span>
+ 
+<span class="hljs-keyword">import</span> java.net.*;
+<span class="hljs-keyword">import</span> java.io.*;
+ 
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GreetingServer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>
+&#123;
+   <span class="hljs-keyword">private</span> ServerSocket serverSocket;
+   
+   <span class="hljs-keyword">public</span> <span class="hljs-title function_">GreetingServer</span><span class="hljs-params">(<span class="hljs-type">int</span> port)</span> <span class="hljs-keyword">throws</span> IOException
+   &#123;
+      serverSocket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(port);
+      serverSocket.setSoTimeout(<span class="hljs-number">10000</span>);
+   &#125;
+ 
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>
+   &#123;
+      <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)
+      &#123;
+         <span class="hljs-keyword">try</span>
+         &#123;
+            System.out.println(<span class="hljs-string">&quot;等待远程连接，端口号为：&quot;</span> + serverSocket.getLocalPort() + <span class="hljs-string">&quot;...&quot;</span>);
+            <span class="hljs-type">Socket</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> serverSocket.accept();
+            System.out.println(<span class="hljs-string">&quot;远程主机地址：&quot;</span> + server.getRemoteSocketAddress());
+            <span class="hljs-type">DataInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataInputStream</span>(server.getInputStream());
+            System.out.println(in.readUTF());
+            <span class="hljs-type">DataOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataOutputStream</span>(server.getOutputStream());
+            out.writeUTF(<span class="hljs-string">&quot;谢谢连接我：&quot;</span> + server.getLocalSocketAddress() + <span class="hljs-string">&quot;\nGoodbye!&quot;</span>);
+            server.close();
+         &#125;<span class="hljs-keyword">catch</span>(SocketTimeoutException s)
+         &#123;
+            System.out.println(<span class="hljs-string">&quot;Socket timed out!&quot;</span>);
+            <span class="hljs-keyword">break</span>;
+         &#125;<span class="hljs-keyword">catch</span>(IOException e)
+         &#123;
+            e.printStackTrace();
+            <span class="hljs-keyword">break</span>;
+         &#125;
+      &#125;
+   &#125;
+   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String [] args)</span>
+   &#123;
+      <span class="hljs-type">int</span> <span class="hljs-variable">port</span> <span class="hljs-operator">=</span> Integer.parseInt(args[<span class="hljs-number">0</span>]);
+      <span class="hljs-keyword">try</span>
+      &#123;
+         <span class="hljs-type">Thread</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GreetingServer</span>(port);
+         t.run();
+      &#125;<span class="hljs-keyword">catch</span>(IOException e)
+      &#123;
+         e.printStackTrace();
+      &#125;
+   &#125;
+&#125;</code></pre></div>
+
+<h5 id="服务端-1"><a href="#服务端-1" class="headerlink" title="服务端"></a>服务端</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.socket;
+<span class="hljs-keyword">import</span> java.io.*;
+<span class="hljs-keyword">import</span> java.net.ServerSocket;
+<span class="hljs-keyword">import</span> java.net.Socket;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">* 服务端, 使用字符流方式读写</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@SuppressWarnings(&#123;&quot;all&quot;&#125;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SocketTCP03Server</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//思路</span>
+<span class="hljs-comment">//1. 在本机 的 9999 端口监听, 等待连接</span>
+<span class="hljs-comment">// 细节: 要求在本机没有其它服务在监听 9999</span>
+韩顺平循序渐进学Java 零基础第<span class="hljs-number">885</span>页<span class="hljs-comment">// 细节：这个 ServerSocket 可以通过 accept() 返回多个 Socket[多个客户端连接服务器的并发]</span>
+<span class="hljs-type">ServerSocket</span> <span class="hljs-variable">serverSocket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(<span class="hljs-number">9999</span>);
+System.out.println(<span class="hljs-string">&quot;服务端，在 9999 端口监听，等待连接..&quot;</span>);
+<span class="hljs-comment">//2. 当没有客户端连接 9999 端口时，程序会 阻塞, 等待连接</span>
+<span class="hljs-comment">// 如果有客户端连接，则会返回 Socket 对象，程序继续</span>
+<span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> serverSocket.accept();
+System.out.println(<span class="hljs-string">&quot;服务端 socket =&quot;</span> + socket.getClass());
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">//3. 通过 socket.getInputStream() 读取客户端写入到数据通道的数据, 显示</span>
+<span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> socket.getInputStream();
+<span class="hljs-comment">//4. IO 读取, 使用字符流, 老师使用 InputStreamReader 将 inputStream 转成字符流BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> bufferedReader.readLine();
+System.out.println(s);<span class="hljs-comment">//输出</span>
+<span class="hljs-comment">//5. 获取 socket 相关联的输出流</span>
+<span class="hljs-type">OutputStream</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> socket.getOutputStream();
+<span class="hljs-comment">// 使用字符输出流的方式回复信息</span>
+<span class="hljs-type">BufferedWriter</span> <span class="hljs-variable">bufferedWriter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(outputStream));
+bufferedWriter.write(<span class="hljs-string">&quot;hello client 字符流&quot;</span>);
+bufferedWriter.newLine();<span class="hljs-comment">// 插入一个换行符，表示回复内容的结束</span>
+bufferedWriter.flush();<span class="hljs-comment">//注意需要手动的 flush</span>
+韩顺平循序渐进学Java 零基础第<span class="hljs-number">886</span>页<span class="hljs-comment">//6.关闭流和 socket</span>
+bufferedWriter.close();
+bufferedReader.close();
+socket.close();
+serverSocket.close();<span class="hljs-comment">//关闭</span>
+&#125;
+&#125;
+<span class="hljs-keyword">package</span> com.h</code></pre></div>
+
+<h5 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.socket;
+<span class="hljs-keyword">import</span> java.io.*;
+<span class="hljs-keyword">import</span> java.net.InetAddress;
+<span class="hljs-keyword">import</span> java.net.Socket;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">* 客户端，发送 &quot;hello, server&quot; 给服务端， 使用字符流</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@SuppressWarnings(&#123;&quot;all&quot;&#125;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SocketTCP03Client</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//思路</span>
+<span class="hljs-comment">//1. 连接服务端 (ip , 端口）</span>
+<span class="hljs-comment">//解读: 连接本机的 9999 端口, 如果连接成功，返回 Socket 对象</span>
+韩顺平循序渐进学Java 零基础第<span class="hljs-number">887</span>页<span class="hljs-type">Socket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(InetAddress.getLocalHost(), <span class="hljs-number">9999</span>);
+System.out.println(<span class="hljs-string">&quot;客户端 socket 返回=&quot;</span> + socket.getClass());
+<span class="hljs-comment">//2. 连接上后，生成 Socket, 通过 socket.getOutputStream()</span>
+<span class="hljs-comment">// 得到 和 socket 对象关联的输出流对象</span>
+<span class="hljs-type">OutputStream</span> <span class="hljs-variable">outputStream</span> <span class="hljs-operator">=</span> socket.getOutputStream();
+<span class="hljs-comment">//3. 通过输出流，写入数据到 数据通道, 使用字符流</span>
+<span class="hljs-type">BufferedWriter</span> <span class="hljs-variable">bufferedWriter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedWriter</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OutputStreamWriter</span>(outputStream));
+bufferedWriter.write(<span class="hljs-string">&quot;hello, server 字符流&quot;</span>);
+bufferedWriter.newLine();<span class="hljs-comment">//插入一个换行符，表示写入的内容结束, 注意，要求对方使用readLine()!!!!</span>
+bufferedWriter.flush();<span class="hljs-comment">// 如果使用的字符流，需要手动刷新，否则数据不会写入数据通道//4. 获取和 socket 关联的输入流. 读取数据(字符)，并显示</span>
+<span class="hljs-type">InputStream</span> <span class="hljs-variable">inputStream</span> <span class="hljs-operator">=</span> socket.getInputStream();
+<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">bufferedReader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(inputStream));
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> bufferedReader.readLine();
+System.out.println(s);
+<span class="hljs-comment">//5. 关闭流对象和 socket, 必须关闭</span>
+bufferedReader.close();<span class="hljs-comment">//关闭外层流</span>
+bufferedWriter.close();
+socket.close();
+System.out.println(<span class="hljs-string">&quot;客户端退出.....&quot;</span>);
+&#125;
+&#125;</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">StreamUtils</span> &#123;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* 功能：将输入流转换成 byte[]</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@param</span> is</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">* <span class="hljs-doctag">@throws</span> Exception</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">byte</span>[] streamToByteArray(InputStream is) <span class="hljs-keyword">throws</span> Exception&#123;
+<span class="hljs-type">ByteArrayOutputStream</span> <span class="hljs-variable">bos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ByteArrayOutputStream</span>();<span class="hljs-comment">//创建输出流对象</span>
+<span class="hljs-type">byte</span>[] b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];
+<span class="hljs-type">int</span> len;
+<span class="hljs-keyword">while</span>((len=is.read(b))!=-<span class="hljs-number">1</span>)&#123;
+bos.write(b, <span class="hljs-number">0</span>, len);
+&#125;
+<span class="hljs-type">byte</span>[] array = bos.toByteArray();
+bos.close();
+<span class="hljs-keyword">return</span> array;
+&#125;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* 功能：将 InputStream 转换成 String</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@param</span> is</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">* <span class="hljs-doctag">@throws</span> Exception</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">streamToString</span><span class="hljs-params">(InputStream is)</span> <span class="hljs-keyword">throws</span> Exception&#123;
+<span class="hljs-type">BufferedReader</span> <span class="hljs-variable">reader</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BufferedReader</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">InputStreamReader</span>(is));
+StringBuilder builder= <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();
+String line;
+<span class="hljs-keyword">while</span>((line=reader.readLine())!=<span class="hljs-literal">null</span>)&#123; <span class="hljs-comment">//当读取到 null 时，就表示结束</span>
+builder.append(line+<span class="hljs-string">&quot;\r\n&quot;</span>);
+&#125;
+<span class="hljs-keyword">return</span> builder.toString();
+&#125;
+&#125;
+</code></pre></div>
+
+
+
+<h4 id="UDP-1"><a href="#UDP-1" class="headerlink" title="UDP"></a>UDP</h4><ul>
+<li><p>DatagramSocket指定接收端的端口号，并接收和发送，DatagramPacket 对象</p>
+</li>
+<li><p>DatagramPacket 对象实例化时</p>
+<ul>
+<li><p>1.作为发出端，初始化的参数有 data 内容字节数组 , data.length , 主机(IP) , 端口</p>
+<div class="code-wrapper"><pre><code class="hljs java"> <span class="hljs-type">DatagramPacket</span> <span class="hljs-variable">packet</span> <span class="hljs-operator">=</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">DatagramPacket</span>(data, data.length, InetAddress.getByName(<span class="hljs-string">&quot;192.168.12.1&quot;</span>), <span class="hljs-number">9999</span>);
+socket.send(packet);</code></pre></div>
+</li>
+<li><p>2.作为接收端时，初始化的参数有 字节数组， 字节数组长度</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-type">byte</span>[] buf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];
+<span class="hljs-type">DatagramPacket</span> <span class="hljs-variable">packet</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DatagramPacket</span>(buf, buf.length);</code></pre></div></li>
+</ul>
+</li>
+<li><p>DatagramPacket拆包</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">length</span> <span class="hljs-operator">=</span> packet.getLength();<span class="hljs-comment">//实际接收到的数据字节长度</span>
+<span class="hljs-type">byte</span>[] data = packet.getData();<span class="hljs-comment">//接收到数据</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data, <span class="hljs-number">0</span>, length);</code></pre></div></li>
+</ul>
+<p><strong>编写一个接收端A,和一个发送端B</strong></p>
+<p><strong>1.接收端A，在9999端口等待接收数据（ receive）</strong></p>
+<p><strong>2.发送端B向接收端A发送“hello，明天吃火锅”</strong></p>
+<p><strong>3.接收端A收到发送端B，回复“收到，明天见！”然后退出</strong></p>
+<p><strong>4.发送端B接收到接收端A发送的内容后退出</strong></p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.udp;
+韩顺平循序渐进学Java 零基础第<span class="hljs-number">896</span>页<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.net.DatagramPacket;
+<span class="hljs-keyword">import</span> java.net.DatagramSocket;
+<span class="hljs-keyword">import</span> java.net.InetAddress;
+<span class="hljs-keyword">import</span> java.net.SocketException;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">* UDP 接收端</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UDPReceiverA</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//1. 创建一个 DatagramSocket 对象，准备在 9999 接收数据</span>
+<span class="hljs-type">DatagramSocket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DatagramSocket</span>(<span class="hljs-number">9999</span>);
+<span class="hljs-comment">//2. 构建一个 DatagramPacket 对象，准备接收数据</span>
+<span class="hljs-comment">// 在前面讲解 UDP 协议时，老师说过一个数据包最大 64k</span>
+<span class="hljs-type">byte</span>[] buf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];
+<span class="hljs-type">DatagramPacket</span> <span class="hljs-variable">packet</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DatagramPacket</span>(buf, buf.length);
+<span class="hljs-comment">//3. 调用 接收方法, 将通过网络传输的 DatagramPacket 对象</span>
+<span class="hljs-comment">// 填充到 packet 对象</span>
+<span class="hljs-comment">//老师提示: 当有数据包发送到 本机的 9999 端口时，就会接收到数据</span>
+<span class="hljs-comment">// 如果没有数据包发送到 本机的 9999 端口, 就会阻塞等待. System.out.println(&quot;接收端 A 等待接收数据..&quot;);</span>
+socket.receive(packet);
+<span class="hljs-comment">//4. 可以把 packet 进行拆包，取出数据，并显示.</span>
+<span class="hljs-type">int</span> <span class="hljs-variable">length</span> <span class="hljs-operator">=</span> packet.getLength();<span class="hljs-comment">//实际接收到的数据字节长度</span>
+<span class="hljs-type">byte</span>[] data = packet.getData();<span class="hljs-comment">//接收到数据</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data, <span class="hljs-number">0</span>, length);
+System.out.println(s);
+<span class="hljs-comment">//===回复信息给 B 端</span>
+<span class="hljs-comment">//将需要发送的数据，封装到 DatagramPacket 对象</span>
+data = <span class="hljs-string">&quot;好的, 明天见&quot;</span>.getBytes();
+<span class="hljs-comment">//说明: 封装的 DatagramPacket 对象 data 内容字节数组 , data.length , 主机(IP) , 端口packet =</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">DatagramPacket</span>(data, data.length, InetAddress.getByName(<span class="hljs-string">&quot;192.168.12.1&quot;</span>), <span class="hljs-number">9998</span>);
+socket.send(packet);<span class="hljs-comment">//发送</span>
+<span class="hljs-comment">//5. 关闭资源</span>
+socket.close();
+System.out.println(<span class="hljs-string">&quot;A 端退出...&quot;</span>);
+&#125;
+&#125;
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hspedu.udp;
+韩顺平循序渐进学Java 零基础第<span class="hljs-number">898</span>页<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.net.*;
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@author</span> 韩顺平</span>
+<span class="hljs-comment">* <span class="hljs-doctag">@version</span> 1.0</span>
+<span class="hljs-comment">* 发送端 B ====&gt; 也可以接收数据</span>
+<span class="hljs-comment">*/</span>
+<span class="hljs-meta">@SuppressWarnings(&#123;&quot;all&quot;&#125;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UDPSenderB</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> IOException &#123;
+<span class="hljs-comment">//1.创建 DatagramSocket 对象，准备在 9998 端口 接收数据</span>
+<span class="hljs-type">DatagramSocket</span> <span class="hljs-variable">socket</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DatagramSocket</span>(<span class="hljs-number">9998</span>);
+<span class="hljs-comment">//2. 将需要发送的数据，封装到 DatagramPacket 对象</span>
+<span class="hljs-type">byte</span>[] data = <span class="hljs-string">&quot;hello 明天吃火锅~&quot;</span>.getBytes(); <span class="hljs-comment">//</span>
+<span class="hljs-comment">//说明: 封装的 DatagramPacket 对象 data 内容字节数组 , data.length , 主机(IP) , 端口</span>
+    <span class="hljs-type">DatagramPacket</span> <span class="hljs-variable">packet</span> <span class="hljs-operator">=</span>
+    <span class="hljs-keyword">new</span> <span class="hljs-title class_">DatagramPacket</span>(data, data.length, InetAddress.getByName(<span class="hljs-string">&quot;192.168.12.1&quot;</span>), <span class="hljs-number">9999</span>);
+socket.send(packet);
+<span class="hljs-comment">//3.=== 接收从 A 端回复的信息</span>
+<span class="hljs-comment">//(1) 构建一个 DatagramPacket 对象，准备接收数据</span>
+韩顺平循序渐进学Java 零基础第<span class="hljs-number">899</span>页<span class="hljs-comment">// 在前面讲解 UDP 协议时，老师说过一个数据包最大 64k</span>
+<span class="hljs-type">byte</span>[] buf = <span class="hljs-keyword">new</span> <span class="hljs-title class_">byte</span>[<span class="hljs-number">1024</span>];
+packet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DatagramPacket</span>(buf, buf.length);
+<span class="hljs-comment">//(2) 调用 接收方法, 将通过网络传输的 DatagramPacket 对象</span>
+<span class="hljs-comment">// 填充到 packet 对象</span>
+<span class="hljs-comment">//老师提示: 当有数据包发送到 本机的 9998 端口时，就会接收到数据</span>
+<span class="hljs-comment">// 如果没有数据包发送到 本机的 9998 端口, 就会阻塞等待. socket.receive(packet);</span>
+<span class="hljs-comment">//(3) 可以把 packet 进行拆包，取出数据，并显示. int length = packet.getLength();//实际接收到的数据字节长度</span>
+data = packet.getData();<span class="hljs-comment">//接收到数据</span>
+<span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(data, <span class="hljs-number">0</span>, length);
+System.out.println(s);
+<span class="hljs-comment">//关闭资源</span>
+socket.close();
+System.out.println(<span class="hljs-string">&quot;B 端退出&quot;</span>);
+&#125;
+&#125;
+</code></pre></div>
+
+
+
+
+
+
+
+
                 
               </div>
             
@@ -278,6 +685,41 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Java/%E5%9F%BA%E7%A1%80/" class="category-chain-item">基础</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="print-no-link">#Java网络编程</a>
+      
+    </div>
   
 </div>
 
@@ -287,7 +729,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2023.12.12学习总结</div>
+      <div>TCP,UDP,InetAddress</div>
       <div>http://example.com/2023/12/12/2023-12-12学习总结/</div>
     </div>
     <div class="license-meta">

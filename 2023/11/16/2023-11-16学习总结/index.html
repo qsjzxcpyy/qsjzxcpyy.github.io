@@ -18,7 +18,7 @@
   
     <meta name="description" content="Stack 笔记public void test(int x) &#123;         Stack&lt;Integer&gt; s1 &#x3D; new Stack&lt;Integer&gt;();         Stack&lt;Integer&gt; s2 &#x3D; new Stack&lt;Integer&gt;();         s1.push(x);         s2.push(x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="集合框架图，集合细节，泛型，序列化，TCP——Socket">
+<meta property="og:title" content="集合框架图，集合细节，泛型，序列化">
 <meta property="og:url" content="http://example.com/2023/11/16/2023-11-16%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="小齐的blog">
 <meta property="og:description" content="Stack 笔记public void test(int x) &#123;         Stack&lt;Integer&gt; s1 &#x3D; new Stack&lt;Integer&gt;();         Stack&lt;Integer&gt; s2 &#x3D; new Stack&lt;Integer&gt;();         s1.push(x);         s2.push(x">
@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/01/2243690-9cd9c896e0d512ed.gif">
 <meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2014/01/java-coll-2020-11-16.png">
 <meta property="article:published_time" content="2023-11-16T06:02:11.000Z">
-<meta property="article:modified_time" content="2023-12-12T08:56:13.204Z">
+<meta property="article:modified_time" content="2023-12-12T13:08:04.721Z">
 <meta property="article:author" content="qsjzxcpyy">
 <meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary_large_image">
@@ -34,7 +34,7 @@
   
   
   
-  <title>集合框架图，集合细节，泛型，序列化，TCP——Socket - 小齐的blog</title>
+  <title>集合框架图，集合细节，泛型，序列化 - 小齐的blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="集合框架图，集合细节，泛型，序列化，TCP——Socket"></span>
+            <span id="subtitle" data-typed-text="集合框架图，集合细节，泛型，序列化"></span>
           
         </div>
 
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.3k 字
+          3.1k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          45 分钟
+          26 分钟
         
       </span>
     
@@ -271,7 +271,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">集合框架图，集合细节，泛型，序列化，TCP——Socket</h1>
+            <h1 id="seo-header">集合框架图，集合细节，泛型，序列化</h1>
             
             
               <div class="markdown-body">
@@ -425,111 +425,7 @@
 字符型数组元素为:
 H E L L O</code></pre></div>
 
-<h4 id="泛型类以及通配符（？）"><a href="#泛型类以及通配符（？）" class="headerlink" title="泛型类以及通配符（？）"></a>泛型类以及通配符（？）</h4><h5 id="链接：https-www-runoob-com-java-java-generics-html"><a href="#链接：https-www-runoob-com-java-java-generics-html" class="headerlink" title="链接：https://www.runoob.com/java/java-generics.html"></a>链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-generics.html">https://www.runoob.com/java/java-generics.html</a></h5><h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><h5 id="序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。"><a href="#序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。" class="headerlink" title="序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。"></a>序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。</h5><h5 id="链接：https-www-runoob-com-java-java-serialization-html"><a href="#链接：https-www-runoob-com-java-java-serialization-html" class="headerlink" title="链接：https://www.runoob.com/java/java-serialization.html"></a>链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-serialization.html">https://www.runoob.com/java/java-serialization.html</a></h5><h4 id="TCP——Socket"><a href="#TCP——Socket" class="headerlink" title="TCP——Socket"></a>TCP——Socket</h4><ul>
-<li>服务器实例化一个 ServerSocket 对象，表示通过服务器上的端口通信。</li>
-<li>服务器调用 ServerSocket 类的 accept() 方法，该方法将一直等待，直到客户端连接到服务器上给定的端口。</li>
-<li>服务器正在等待时，一个客户端实例化一个 Socket 对象，指定服务器名称和端口号来请求连接。</li>
-<li>Socket 类的构造函数试图将客户端连接到指定的服务器和端口号。如果通信被建立，则在客户端创建一个 Socket 对象能够与服务器进行通信。</li>
-<li>在服务器端，accept() 方法返回服务器上一个新的 socket 引用，该 socket 连接到客户端的 socket。</li>
-</ul>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><h5 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 文件名 GreetingClient.java</span>
- <span class="hljs-comment">// args[0] 是命令行输入传入的第一个参数</span>
-<span class="hljs-keyword">import</span> java.net.*;
-<span class="hljs-keyword">import</span> java.io.*;
- 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GreetingClient</span>
-&#123;
-   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String [] args)</span>
-   &#123;
-      <span class="hljs-type">String</span> <span class="hljs-variable">serverName</span> <span class="hljs-operator">=</span> args[<span class="hljs-number">0</span>];
-      <span class="hljs-type">int</span> <span class="hljs-variable">port</span> <span class="hljs-operator">=</span> Integer.parseInt(args[<span class="hljs-number">1</span>]);
-      <span class="hljs-keyword">try</span>
-      &#123;
-         System.out.println(<span class="hljs-string">&quot;连接到主机：&quot;</span> + serverName + <span class="hljs-string">&quot; ，端口号：&quot;</span> + port);
-         <span class="hljs-type">Socket</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Socket</span>(serverName, port);
-         System.out.println(<span class="hljs-string">&quot;远程主机地址：&quot;</span> + client.getRemoteSocketAddress());
-         <span class="hljs-type">OutputStream</span> <span class="hljs-variable">outToServer</span> <span class="hljs-operator">=</span> client.getOutputStream();
-         <span class="hljs-type">DataOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataOutputStream</span>(outToServer);
- 
-         out.writeUTF(<span class="hljs-string">&quot;Hello from &quot;</span> + client.getLocalSocketAddress());
-         <span class="hljs-type">InputStream</span> <span class="hljs-variable">inFromServer</span> <span class="hljs-operator">=</span> client.getInputStream();
-         <span class="hljs-type">DataInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataInputStream</span>(inFromServer);
-         System.out.println(<span class="hljs-string">&quot;服务器响应： &quot;</span> + in.readUTF());
-         client.close();
-      &#125;<span class="hljs-keyword">catch</span>(IOException e)
-      &#123;
-         e.printStackTrace();
-      &#125;
-   &#125;
-&#125;</code></pre></div>
-
-<h5 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h5><div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 文件名 GreetingServer.java</span>
- 
-<span class="hljs-keyword">import</span> java.net.*;
-<span class="hljs-keyword">import</span> java.io.*;
- 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GreetingServer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Thread</span>
-&#123;
-   <span class="hljs-keyword">private</span> ServerSocket serverSocket;
-   
-   <span class="hljs-keyword">public</span> <span class="hljs-title function_">GreetingServer</span><span class="hljs-params">(<span class="hljs-type">int</span> port)</span> <span class="hljs-keyword">throws</span> IOException
-   &#123;
-      serverSocket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ServerSocket</span>(port);
-      serverSocket.setSoTimeout(<span class="hljs-number">10000</span>);
-   &#125;
- 
-   <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span>
-   &#123;
-      <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)
-      &#123;
-         <span class="hljs-keyword">try</span>
-         &#123;
-            System.out.println(<span class="hljs-string">&quot;等待远程连接，端口号为：&quot;</span> + serverSocket.getLocalPort() + <span class="hljs-string">&quot;...&quot;</span>);
-            <span class="hljs-type">Socket</span> <span class="hljs-variable">server</span> <span class="hljs-operator">=</span> serverSocket.accept();
-            System.out.println(<span class="hljs-string">&quot;远程主机地址：&quot;</span> + server.getRemoteSocketAddress());
-            <span class="hljs-type">DataInputStream</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataInputStream</span>(server.getInputStream());
-            System.out.println(in.readUTF());
-            <span class="hljs-type">DataOutputStream</span> <span class="hljs-variable">out</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataOutputStream</span>(server.getOutputStream());
-            out.writeUTF(<span class="hljs-string">&quot;谢谢连接我：&quot;</span> + server.getLocalSocketAddress() + <span class="hljs-string">&quot;\nGoodbye!&quot;</span>);
-            server.close();
-         &#125;<span class="hljs-keyword">catch</span>(SocketTimeoutException s)
-         &#123;
-            System.out.println(<span class="hljs-string">&quot;Socket timed out!&quot;</span>);
-            <span class="hljs-keyword">break</span>;
-         &#125;<span class="hljs-keyword">catch</span>(IOException e)
-         &#123;
-            e.printStackTrace();
-            <span class="hljs-keyword">break</span>;
-         &#125;
-      &#125;
-   &#125;
-   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String [] args)</span>
-   &#123;
-      <span class="hljs-type">int</span> <span class="hljs-variable">port</span> <span class="hljs-operator">=</span> Integer.parseInt(args[<span class="hljs-number">0</span>]);
-      <span class="hljs-keyword">try</span>
-      &#123;
-         <span class="hljs-type">Thread</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">GreetingServer</span>(port);
-         t.run();
-      &#125;<span class="hljs-keyword">catch</span>(IOException e)
-      &#123;
-         e.printStackTrace();
-      &#125;
-   &#125;
-&#125;</code></pre></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h4 id="泛型类以及通配符（？）"><a href="#泛型类以及通配符（？）" class="headerlink" title="泛型类以及通配符（？）"></a>泛型类以及通配符（？）</h4><h5 id="链接：https-www-runoob-com-java-java-generics-html"><a href="#链接：https-www-runoob-com-java-java-generics-html" class="headerlink" title="链接：https://www.runoob.com/java/java-generics.html"></a>链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-generics.html">https://www.runoob.com/java/java-generics.html</a></h5><h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><h5 id="序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。"><a href="#序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。" class="headerlink" title="序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。"></a>序列化是一种用于保存、传输和还原对象的方法，它使得对象可以在不同的计算机之间移动和共享，这对于分布式系统、数据存储和跨平台通信非常有用。</h5><h5 id="链接：https-www-runoob-com-java-java-serialization-html"><a href="#链接：https-www-runoob-com-java-java-serialization-html" class="headerlink" title="链接：https://www.runoob.com/java/java-serialization.html"></a>链接：<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-serialization.html">https://www.runoob.com/java/java-serialization.html</a></h5>
                 
               </div>
             
@@ -581,7 +477,7 @@ H E L L O</code></pre></div>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>集合框架图，集合细节，泛型，序列化，TCP——Socket</div>
+      <div>集合框架图，集合细节，泛型，序列化</div>
       <div>http://example.com/2023/11/16/2023-11-16学习总结/</div>
     </div>
     <div class="license-meta">
