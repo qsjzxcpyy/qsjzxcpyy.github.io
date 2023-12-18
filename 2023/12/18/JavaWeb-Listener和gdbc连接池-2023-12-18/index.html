@@ -1,0 +1,1091 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qsjzxcpyy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Listener监听器 在程序开发中，经常需要对某些事件进行监听，如监听鼠标单击事件、监听键盘按下事件等，此时就需要使用监听器，监听器在监听的过程中会涉及几个重要组成部分，具体如下。 （1）事件（Event）：用户的一个操作，如单击一个按钮、调用一个方法、创建一个对象等。 （2）事件源：产生事件的对象。 （3）事件监听器（Listener）：负责监听发生在事件源上的事件。 （4）事件处理器：监听器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb:Listener和gdbc和数据库连接池和DBUtil工具">
+<meta property="og:url" content="http://example.com/2023/12/18/JavaWeb-Listener%E5%92%8Cgdbc%E8%BF%9E%E6%8E%A5%E6%B1%A0-2023-12-18/index.html">
+<meta property="og:site_name" content="小齐的blog">
+<meta property="og:description" content="Listener监听器 在程序开发中，经常需要对某些事件进行监听，如监听鼠标单击事件、监听键盘按下事件等，此时就需要使用监听器，监听器在监听的过程中会涉及几个重要组成部分，具体如下。 （1）事件（Event）：用户的一个操作，如单击一个按钮、调用一个方法、创建一个对象等。 （2）事件源：产生事件的对象。 （3）事件监听器（Listener）：负责监听发生在事件源上的事件。 （4）事件处理器：监听器">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218191201669.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218192432616.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218192551005.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218192705015.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218192916647.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218194112478.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218194324076.png">
+<meta property="article:published_time" content="2023-12-18T11:03:32.000Z">
+<meta property="article:modified_time" content="2023-12-18T12:20:19.218Z">
+<meta property="article:author" content="qsjzxcpyy">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Listener">
+<meta property="article:tag" content="gdbcAPI">
+<meta property="article:tag" content="数据库连接池C3P0">
+<meta property="article:tag" content="DBUtil工具">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218191201669.png">
+  
+  
+  
+  <title>JavaWeb:Listener和gdbc和数据库连接池和DBUtil工具 - 小齐的blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小齐的blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaWeb:Listener和gdbc和数据库连接池和DBUtil工具"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-18 19:03" pubdate>
+          2023年12月18日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          15k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          124 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">JavaWeb:Listener和gdbc和数据库连接池和DBUtil工具</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="Listener监听器"><a href="#Listener监听器" class="headerlink" title="Listener监听器"></a>Listener监听器</h4><ul>
+<li><p>在程序开发中，经常需要对某些事件进行监听，如监听鼠标单击事件、监听键盘按下事件等，此时就需要使用监听器，监听器在监听的过程中会涉及几个重要组成部分，具体如下。</p>
+<p>（1）事件（Event）：用户的一个操作，如单击一个按钮、调用一个方法、创建一个对象等。</p>
+<p>（2）事件源：产生事件的对象。</p>
+<p>（3）事件监听器（Listener）：负责监听发生在事件源上的事件。</p>
+<p>（4）事件处理器：监听器的成员方法，当事件发生的时候会触发对应的处理器（成员方法）。</p>
+</li>
+<li><p>在开发Web应用程序时，也经常会使用监听器，这个监听器也被称为Servlet事件监听器。Servlet事件监听器就是一个实现了特定接口的Java程序，专门用于监听Web应用程序中ServletContext、HttpSession和ServletRequest等域对象的创建和销毁过程，监听这些域对象属性的修改以及感知绑定到HttpSession域中某个对象的状态。</p>
+</li>
+<li></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218191201669.png" srcset="/img/loading.gif" lazyload alt="image-20231218191201669"></p>
+<p>上表中列举了全部8种Servlet事件监听器，并对它们分别进行了简单地描述。在描述HttpSessionActivationListener时涉及到了活化和钝化的概念， HttpSession对象从内存中转移至硬盘的过程称为钝化，HttpSession对象从持久化的状态变为运行状态的过程被称为活化。</p>
+<ul>
+<li><p>上述监听器根据监听事件的不同可以将其分为三类，具体如下。</p>
+<p>（1）用于监听域对象创建和销毁的事件监听器（ServletContextListener接口、HttpSessionListener接口、ServletRequestListener接口）。</p>
+<p>（2）用于监听域对象属性增加和删除的事件监听器（ServletContextAttributeListener接口、HttpSessionAttributeListener接口、ServletRequestAttributeListener接口）。</p>
+<p>（3）用于监听绑定到HttpSession域中某个对象状态的事件监听器（HttpSessionBindingListener接口、HttpSessionActivationListener接口）。</p>
+<p>在Servlet规范中，这三类事件监听器都定义了相应的接口，在编写事件监听器程序时只需实现对应的接口就可以。Web服务器会根据监听器所实现的接口，把它注册到被监听的对象上，当触发了某个对象的监听事件时，Web容器将会调用Servlet监听器与之相关的方法对事件进行处理。</p>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs java">&lt;h3&gt;这是一个测试对象属性信息监听器的页面&lt;/h3&gt;
+&lt;%
+getServletContext().setAttribute(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;hevttc&quot;</span>);
+getServletContext().setAttribute(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;shuxin&quot;</span>);
+getServletContext().removeAttribute(<span class="hljs-string">&quot;username&quot;</span>);
+session.setAttribute(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;hevttc&quot;</span>);
+session.setAttribute(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;shuxin&quot;</span>);
+session.removeAttribute(<span class="hljs-string">&quot;username&quot;</span>);
+request.setAttribute(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;hevttc&quot;</span>);
+request.setAttribute(<span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;shuxin&quot;</span>);
+request.removeAttribute(<span class="hljs-string">&quot;username&quot;</span>);
+%&gt;
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@WebListener</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyListener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ServletContextListener</span>, HttpSessionListener, ServletRequestListener &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sessionCreated</span><span class="hljs-params">(HttpSessionEvent se)</span>  &#123; 
+        System.out.println(<span class="hljs-string">&quot;HttpSession对象被创建了！&quot;</span>);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">requestDestroyed</span><span class="hljs-params">(ServletRequestEvent sre)</span>  &#123; 
+        System.out.println(<span class="hljs-string">&quot;ServletRequest对象被销毁了！&quot;</span>);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">requestInitialized</span><span class="hljs-params">(ServletRequestEvent sre)</span>  &#123; 
+    	System.out.println(<span class="hljs-string">&quot;ServletRequest对象被创建了！&quot;</span>);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sessionDestroyed</span><span class="hljs-params">(HttpSessionEvent se)</span>  &#123; 
+    	System.out.println(<span class="hljs-string">&quot;HttpSession对象被销毁了！&quot;</span>);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">contextDestroyed</span><span class="hljs-params">(ServletContextEvent sce)</span>  &#123; 
+    	System.out.println(<span class="hljs-string">&quot;ServletContext对象被销毁了！&quot;</span>);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">contextInitialized</span><span class="hljs-params">(ServletContextEvent sce)</span>  &#123; 
+    	System.out.println(<span class="hljs-string">&quot;ServletContext对象被创建了！&quot;</span>);
+    &#125;
+    
+&#125;
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyAttributeListener</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">ServletContextAttributeListener</span>,
+HttpSessionAttributeListener, ServletRequestAttributeListener &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeAdded</span><span class="hljs-params">(ServletContextAttributeEvent sae)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> sae.getName();
+        System.out.println(<span class="hljs-string">&quot;ServletContext添加属性：&quot;</span> + name + <span class="hljs-string">&quot;=&quot;</span>
+        + sae.getServletContext().getAttribute(name));
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeRemoved</span><span class="hljs-params">(ServletContextAttributeEvent sae)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> sae.getName();
+        System.out.println(<span class="hljs-string">&quot;ServletContext移除属性: &quot;</span> + name);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeReplaced</span><span class="hljs-params">(ServletContextAttributeEvent sae)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> sae.getName();
+        System.out.println(<span class="hljs-string">&quot;ServletContext替换属性：&quot;</span> + name + <span class="hljs-string">&quot;=&quot;</span>
+        + sae.getServletContext().getAttribute(name));
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeAdded</span><span class="hljs-params">(HttpSessionBindingEvent hbe)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> hbe.getName();
+        System.out.println(<span class="hljs-string">&quot;HttpSession添加属性：&quot;</span> + name + <span class="hljs-string">&quot;=&quot;</span>
+        + hbe.getSession().getAttribute(name));
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeRemoved</span><span class="hljs-params">(HttpSessionBindingEvent hbe)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> hbe.getName();
+        System.out.println(<span class="hljs-string">&quot;HttpSession移除属性: &quot;</span> + name);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeReplaced</span><span class="hljs-params">(HttpSessionBindingEvent hbe)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> hbe.getName();
+        System.out.println(<span class="hljs-string">&quot;HttpSession替换属性：&quot;</span> + name + <span class="hljs-string">&quot;=&quot;</span>
+        + hbe.getSession().getAttribute(name));
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeAdded</span><span class="hljs-params">(ServletRequestAttributeEvent sra)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> sra.getName();
+        System.out.println(<span class="hljs-string">&quot;ServletRequest添加属性：&quot;</span> + name + <span class="hljs-string">&quot;=&quot;</span>
+        + sra.getServletRequest().getAttribute(name));
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeRemoved</span><span class="hljs-params">(ServletRequestAttributeEvent sra)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> sra.getName();
+        System.out.println(<span class="hljs-string">&quot;ServletRequest移除属性: &quot;</span> + name);
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">attributeReplaced</span><span class="hljs-params">(ServletRequestAttributeEvent sra)</span> &#123;
+        <span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> sra.getName();
+        System.out.println(<span class="hljs-string">&quot;ServletRequest替换属性：&quot;</span> + name + <span class="hljs-string">&quot;=&quot;</span>
+        + sra.getServletRequest().getAttribute(name));
+    &#125;
+&#125;</code></pre></div>
+
+<h4 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h4><ul>
+<li><p>什么是jdbc<br>JDBC的全称是Java数据库连接（Java Database Connectivity），它是一套用于执行SQL语句的Java API。应用程序可通过这套API连接到关系型数据库，并使用SQL语句来完成对数据库中数据的查询、更新、新增和删除的操作。</p>
+<p>不同种类的数据库（如MySQL、Oracle等）在其内部处理数据的方式是不同的，如果直接使用数据库厂商提供的访问接口操作数据库，应用程序的可移植性就会变得很差。例如，用户当前在程序中使用的是MySQL提供的接口操作数据库，如果换成Oracle数据库，则需要重新使用Oracle数据库提供的接口，这样代码的改动量会非常大。有了JDBC后，这种情况就不复存在了，因为它要求各个数据库厂商按照统一的规范来提供数据库驱动，而在程序中是由JDBC和具体的数据库驱动联系，所以用户就不必直接与底层的数据库交互，这使得代码的通用性更强。</p>
+</li>
+<li><p>Driver接口</p>
+<p>Driver接口是所有JDBC驱动程序必须实现的接口，该接口专门提供给数据库厂商使用。需要注意的是，在编写JDBC程序时，必须要把所使用的数据库驱动程序或类库加载到项目的classpath中（这里指MySQL驱动JAR包）。</p>
+</li>
+<li><p>DriverManager类</p>
+<p>DriverManager类用于加载JDBC驱动并且创建与数据库的连接。在DriverManager类中，定义了两个比较重要的静态方法，如下表所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218192432616.png" srcset="/img/loading.gif" lazyload alt="image-20231218192432616"></p>
+</li>
+<li><p>Connection接口</p>
+<p>Connection接口代表Java程序和数据库的连接，只有获得该连接对象后才能访问数据库，并操作数据表。在Connection接口中，定义了一系列方法，其常用方法如下表所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218192551005.png" srcset="/img/loading.gif" lazyload alt="image-20231218192551005"></p>
+</li>
+<li><p>Statement接口</p>
+<p>Statement接口用于执行静态的SQL语句，并返回一个结果对象，该接口的对象通过Connection实例的createStatement()方法获得。利用该对象把静态的SQL语句发送到数据库编译执行，然后返回数据库的处理结果。在Statement接口中，提供了3个常用的执行SQL语句的方法，具体如下表所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218192705015.png" srcset="/img/loading.gif" lazyload alt="image-20231218192705015"></p>
+</li>
+<li><p>PreparedStatement接口</p>
+<p>Statement接口封装了JDBC执行SQL语句的方法，可以完成Java程序执行SQL语句的操作。然而在实际开发过程中往往需要将程序中的变量作为SQL语句的查询条件，而使用Statement接口操作这些SQL语句会过于繁琐，并且存在安全方面的问题。针对这一问题，JDBC API 中提供了扩展的PreparedStatement接口。</p>
+<p>PreparedStatement是Statement的子接口，用于执行预编译的SQL语句。该接口扩展了带有参数SQL语句的执行操作，应用该接口中的SQL语句可以使用占位符“?”来代替其参数，然后通过setXxx()方法为SQL语句的参数赋值。在PreparedStatement接口中，提供了一些常用方法，具体如下表所示。</p>
+<p>需要注意的是，表中的setDate()方法可以设置日期内容，但参数Date的类型是java.sql.Date，而不是java.util.Date。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218192916647.png" srcset="/img/loading.gif" lazyload alt="image-20231218192916647">··</p>
+<p>SQL语句的执行是通过Statement对象实现的。Statement对象每次执行SQL语句时，都会对其进行编译。当相同的SQL语句执行多次时，Statement对象就会使数据库频繁编译相同的SQL语句，从而降低数据库的访问效率。</p>
+<p>为了解决上述问题，Statement提供了一个子类PreparedStatement。PreparedStatement对象可以对SQL语句进行预编译，预编译的信息会存储在PreparedStatement对象中。当相同的SQL语句再次执行时，程序会使用PreparedStatement对象中的数据，而不需要对SQL语句再次编译去查询数据库，这样就大大的提高了数据的访问效率。</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Example02</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
+Connection conn=<span class="hljs-literal">null</span>;
+PreparedStatement ps=<span class="hljs-literal">null</span>;
+<span class="hljs-keyword">try</span> &#123;
+    Class.forName(<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span>);
+    String url=<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/jdbc&quot;</span>;
+    conn=DriverManager.getConnection(url,<span class="hljs-string">&quot;root&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>);
+    String sql=<span class="hljs-string">&quot;insert into users values(null,?,?,?,?)&quot;</span>;
+    ps=conn.prepareStatement(sql);
+    ps.setString(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;zhaoliu&quot;</span>);
+    ps.setString(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;123&quot;</span>);
+    ps.setString(<span class="hljs-number">3</span>, <span class="hljs-string">&quot;zhaoliu@126.com&quot;</span>);
+    ps.setString(<span class="hljs-number">4</span>, <span class="hljs-string">&quot;1999-1-2&quot;</span>);
+    ps.executeUpdate();
+    ps.close();
+    conn.close();
+&#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;
+<span class="hljs-comment">// TODO Auto-generated catch block</span>
+	e.printStackTrace();
+&#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;
+<span class="hljs-comment">// TODO Auto-generated catch block</span>
+	e.printStackTrace();
+&#125;
+&#125;
+&#125;
+</code></pre></div></li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Example01</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
+Connection conn=<span class="hljs-literal">null</span>;
+Statement stmt=<span class="hljs-literal">null</span>;
+ResultSet rs=<span class="hljs-literal">null</span>;
+<span class="hljs-keyword">try</span> &#123;
+    <span class="hljs-comment">//1.加载数据库的驱动类</span>
+    Class.forName(<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span>);
+    <span class="hljs-comment">//2.通过DriverManager获得数据库连接</span>
+    String url=<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/jdbc&quot;</span>;
+    String username=<span class="hljs-string">&quot;root&quot;</span>;
+    String password=<span class="hljs-string">&quot;root&quot;</span>;
+    conn=DriverManager.getConnection(url,username,password);
+    <span class="hljs-comment">//3.通过Connection对象获得Statement对象</span>
+    stmt=conn.createStatement();
+    <span class="hljs-comment">//4.使用Statement执行sql语句</span>
+    String sql=<span class="hljs-string">&quot;select * from users&quot;</span>;
+    rs=stmt.executeQuery(sql);
+    <span class="hljs-comment">//5.操作ResultSet结果集</span>
+    System.out.println(<span class="hljs-string">&quot;id |name |password|email  |birthday&quot;</span>);
+    <span class="hljs-keyword">while</span>(rs.next()) &#123;
+        <span class="hljs-type">int</span> id=rs.getInt(<span class="hljs-number">1</span>);
+        String name=rs.getString(<span class="hljs-number">2</span>);
+        String pass=rs.getString(<span class="hljs-number">3</span>);
+        String email=rs.getString(<span class="hljs-number">4</span>);
+        Date birthday=rs.getDate(<span class="hljs-number">5</span>);
+        System.out.println(id+<span class="hljs-string">&quot;  |&quot;</span>+name+<span class="hljs-string">&quot;  |&quot;</span>+pass+<span class="hljs-string">&quot;  |&quot;</span>+email+<span class="hljs-string">&quot;  |&quot;</span>+birthday);
+    &#125;
+    rs.close();
+    stmt.close();
+    conn.close();
+&#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;
+<span class="hljs-comment">// TODO Auto-generated catch block</span>
+	e.printStackTrace();
+&#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;
+<span class="hljs-comment">// TODO Auto-generated catch block</span>
+	e.printStackTrace();
+&#125;
+&#125;
+&#125;
+</code></pre></div>
+
+<ul>
+<li><p>ResultSet对象</p>
+<p>ResultSet主要用于存储结果集，可以通过next()方法由前向后逐个获取结果集中的数据</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Example03</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
+    Connection conn=<span class="hljs-literal">null</span>;
+    Statement stmt=<span class="hljs-literal">null</span>;
+    ResultSet rs=<span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">try</span> &#123;
+        Class.forName(<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span>);
+        String url=<span class="hljs-string">&quot;jdbc:mysql://localhost:3306/jdbc&quot;</span>;
+        conn=DriverManager.getConnection(url,<span class="hljs-string">&quot;root&quot;</span>,<span class="hljs-string">&quot;root&quot;</span>);
+        String sql=<span class="hljs-string">&quot;select * from users&quot;</span>;
+        stmt=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        rs=stmt.executeQuery(sql);
+        System.out.print(<span class="hljs-string">&quot;第二条数据的name值为：&quot;</span>);
+        rs.absolute(<span class="hljs-number">2</span>);
+        System.out.println(rs.getString(<span class="hljs-number">2</span>));
+        System.out.print(<span class="hljs-string">&quot;第一条数据的name值为：&quot;</span>);
+        rs.beforeFirst();
+        rs.next();
+        System.out.println(rs.getString(<span class="hljs-number">2</span>));
+        System.out.print(<span class="hljs-string">&quot;最后一条数据的name值为：&quot;</span>);
+        rs.afterLast();
+        rs.previous();
+        System.out.println(rs.getString(<span class="hljs-number">2</span>));
+        rs.close();
+        stmt.close();
+        conn.close();
+    &#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;
+    e.printStackTrace();
+    &#125; <span class="hljs-keyword">catch</span> (SQLException e) &#123;
+    e.printStackTrace();
+&#125;&#125;&#125;</code></pre></div></li>
+</ul>
+<h4 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h4><ul>
+<li><p>作用</p>
+<p>为了避免频繁的创建数据库连接，数据库连接池技术应运而生。数据库连接池负责分配、管理和释放数据库连接，它允许应用程序重复使用现有的数据库连接，而不是重新建立。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218194112478.png" srcset="/img/loading.gif" lazyload alt="image-20231218194112478"></p>
+</li>
+<li><p>DataSource接口</p>
+<p>为了获取数据库连接对象（Connection），JDBC提供了javax.sql.DataSource接口，它负责与数据库建立连接，并定义了返回值为Connection对象的方法，具体如下。</p>
+<p>•Connection getConnection() </p>
+<p>Connection getConnection(String username, String password</p>
+</li>
+<li><p>C3Po数据库连接池</p>
+<p>C3P0是目前最流行的开源数据库连接池之一，它实现了DataSource数据源接口，支持JDBC2和JDBC3的标准规范，易于扩展并且性能优越，著名的开源框架Hibernate和 Spring都支持该数据源。在使用C3P0数据源开发时，需要了解C3P0中DataSource接口的实现类ComboPooledDataSource，它是C3P0的核心类，提供了数据源对象的相关方法，该类的常用方法介绍如下表所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/image-20231218194324076.png" srcset="/img/loading.gif" lazyload alt="image-20231218194324076"></p>
+<ul>
+<li><p>数据源对象（通过数据源对象获取connection对象）</p>
+<p>1.通过ComboPooledDataSource构造方法创建数据源对象</p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hevttc.test;
+<span class="hljs-keyword">import</span> java.beans.PropertyVetoException;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+<span class="hljs-keyword">import</span> com.mchange.v2.c3p0.ComboPooledDataSource;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Testc3p0</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DataSource ds=<span class="hljs-literal">null</span>;
+<span class="hljs-keyword">static</span> &#123;
+    ComboPooledDataSource cpds=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ComboPooledDataSource</span>();
+    <span class="hljs-keyword">try</span> &#123;
+        cpds.setDriverClass(<span class="hljs-string">&quot;com.mysql.jdbc.Driver&quot;</span>);
+        cpds.setJdbcUrl(<span class="hljs-string">&quot;jdbc:mysql://localhost/jdbc&quot;</span>);
+        cpds.setUser(<span class="hljs-string">&quot;root&quot;</span>);
+        cpds.setPassword(<span class="hljs-string">&quot;root&quot;</span>);
+        cpds.setInitialPoolSize(<span class="hljs-number">5</span>);
+        cpds.setMaxPoolSize(<span class="hljs-number">5</span>);
+        ds=cpds;
+        &#125; <span class="hljs-keyword">catch</span> (PropertyVetoException e) &#123;
+        e.printStackTrace();
+        &#125;
+&#125;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException &#123;
+	System.out.println(ds.getConnection());
+&#125;
+&#125;
+</code></pre></div>
+
+<p>2.通过读取配置文件创建数据源对象</p>
+<p>1.将c3p0 jar包放入项目</p>
+<p>2.在src根目录下创建c3p0-config.xml文件</p>
+<div class="code-wrapper"><pre><code class="hljs java">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;
+&lt;c3p0-config&gt;
+&lt;<span class="hljs-keyword">default</span>-config&gt;
+    &lt;property name=<span class="hljs-string">&quot;driverClass&quot;</span>&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+    &lt;property name=<span class="hljs-string">&quot;jdbcUrl&quot;</span>&gt;jdbc:mysql:<span class="hljs-comment">//localhost:3306/mydb&lt;/property&gt;</span>
+    &lt;property name=<span class="hljs-string">&quot;user&quot;</span>&gt;root&lt;/property&gt;
+    &lt;property name=<span class="hljs-string">&quot;password&quot;</span>&gt;root&lt;/property&gt;
+&lt;/<span class="hljs-keyword">default</span>-config&gt; 
+    ---------------------------------------------------------------------
+    <span class="hljs-comment">//以上是默认的配置，还可以编写其他配置，用的时候进行选择</span>
+ &lt;named-config name=<span class="hljs-string">&quot;hevttc&quot;</span>&gt;
+        <span class="hljs-comment">//驱动方式</span>
+    &lt;property name=<span class="hljs-string">&quot;driverClass&quot;</span>&gt;com.mysql.jdbc.Driver&lt;/property&gt;
+        <span class="hljs-comment">//url地址</span>
+    &lt;property name=<span class="hljs-string">&quot;jdbcUrl&quot;</span>&gt;jdbc:mysql:<span class="hljs-comment">//localhost:3306/mydb&lt;/property&gt;</span>
+        <span class="hljs-comment">//用户名</span>
+    &lt;property name=<span class="hljs-string">&quot;user&quot;</span>&gt;root&lt;/property&gt;
+        <span class="hljs-comment">//密码</span>
+    &lt;property name=<span class="hljs-string">&quot;password&quot;</span>&gt;rootroot&lt;/property&gt;
+  &lt;/named-config&gt;
+&lt;/c3p0-config&gt; 
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">//选择使用方式</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">ComboPooledDataSource</span>(<span class="hljs-string">&quot;hevttc&quot;</span>);
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">ComboPooledDataSource</span>();<span class="hljs-comment">//默认</span></code></pre></div>
+
+<h4 id="DBUtil工具"><a href="#DBUtil工具" class="headerlink" title="DBUtil工具"></a>DBUtil工具</h4><ul>
+<li><p>作用</p>
+<p>为了更加简单地使用JDBC，Apache组织提供了一个DBUtils工具，它是操作数据库的一个组件，实现了对JDBC的简单封装，可以在不影响性能的情况下极大地简化JDBC的编码工作量。</p>
+<p>DBUtils工具的核心是org.apache.commons.dbutils.QueryRunner类和org.apache.commons.dbutils.ResultSetHandler接口。</p>
+</li>
+<li><p>QueryRunner类</p>
+<ul>
+<li><p>作用</p>
+<p>QueryRunner类简化了执行SQL语句的代码，它与ResultSetHandler组合在一起就能完成大部分的数据库操作，大大的减少了编码量。QueryRunner中提供了几个常用的方法：</p>
+<p>（1）查询：query(String sql,ResultSetHandler rsh,Object… params)</p>
+<p>（2）更新：update(String sql,Object… params)  （插入，更新或删除）</p>
+<p>（3）更新：update(String sql) （插入，更新或删除，无需置换参数）</p>
+<p>QueryRunner类提供了带有一个参数的构造方法，该方法以javax.sql.DataSource作为参数传递到QueryRunner的构造方法中来获取Connection对象</p>
+</li>
+</ul>
+</li>
+<li><p>ResultSetHandler接口</p>
+<ul>
+<li><p>作用</p>
+<p> ResultSetHandler接口用于处理ResultSet结果集，它可以将结果集中的数据转为不同的形式。根据结果集中数据类型的不同，ResultSetHandler提供了几种常见的实现类，具体如下：</p>
+<p>BeanHandler：将结果集中的第一行数据封装到一个对应的JavaBean实例中。</p>
+<p>BeanListHandler：将结果集中的每一行数据都封装到一个对应的JavaBean实例中，并存放到List里。</p>
+<p>ScalarHandler：将结果集中某一条记录的其中某一列的数据存储成Object对象。</p>
+</li>
+<li><p>例：ResultSetHandler的使用</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hevttc.test;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+<span class="hljs-keyword">import</span> org.apache.commons.dbutils.QueryRunner;
+<span class="hljs-keyword">import</span> org.apache.commons.dbutils.handlers.BeanHandler;
+<span class="hljs-keyword">import</span> com.hevttc.bean.User;
+<span class="hljs-keyword">import</span> com.mchange.v2.c3p0.ComboPooledDataSource;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ResultSetTest01</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DataSource ds=<span class="hljs-literal">null</span>;
+<span class="hljs-keyword">static</span> &#123;
+    ComboPooledDataSource cpds=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ComboPooledDataSource</span>();
+    ds=cpds;
+&#125;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException &#123;
+    QueryRunner runner=<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryRunner</span>(ds);
+    String sql=<span class="hljs-string">&quot;select * from users where id=?&quot;</span>;
+    User user=(User)runner.query(sql, <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanHandler</span>(User.class),<span class="hljs-number">1</span>);<span class="hljs-comment">//返回的数据存储在User对象中</span>
+    System.out.println(<span class="hljs-string">&quot;id为1的User对象的name值为：&quot;</span>+user.getName());
+&#125;
+&#125;
+</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.hevttc.test;
+<span class="hljs-keyword">import</span> java.sql.SQLException;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.List;
+<span class="hljs-keyword">import</span> javax.sql.DataSource;
+<span class="hljs-keyword">import</span> org.apache.commons.dbutils.QueryRunner;
+<span class="hljs-keyword">import</span> org.apache.commons.dbutils.handlers.BeanListHandler;
+<span class="hljs-keyword">import</span> com.hevttc.bean.User;
+<span class="hljs-keyword">import</span> com.mchange.v2.c3p0.ComboPooledDataSource;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ResultSetTest02</span> &#123;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DataSource ds=<span class="hljs-literal">null</span>;
+<span class="hljs-keyword">static</span> &#123;
+	ds=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ComboPooledDataSource</span>();
+&#125;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> SQLException &#123;
+    QueryRunner runner=<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryRunner</span>(ds);
+    String sql=<span class="hljs-string">&quot;select * from users&quot;</span>;
+    List&lt;User&gt; userList=(ArrayList&lt;User&gt;)runner.query(sql, <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanListHandler</span>(User.class));
+    <span class="hljs-keyword">for</span>(User user:userList) &#123;
+    System.out.println(<span class="hljs-string">&quot;id为&quot;</span>+user.getId()+<span class="hljs-string">&quot;的用户，用户名为：&quot;</span>+user.getName());
+&#125;
+&#125;
+&#125;</code></pre></div></li>
+</ul>
+</li>
+<li><p>实现对数据库的增删改查</p>
+<div class="code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserDao</span> &#123;
+    <span class="hljs-keyword">public</span> List&lt;User&gt; <span class="hljs-title function_">findAll</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> SQLException&#123;
+        QueryRunner runner=<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryRunner</span>(C3p0Utils.getDataSource());
+        String sql=<span class="hljs-string">&quot;select * from users&quot;</span>;
+        List&lt;User&gt; userList=(ArrayList&lt;User&gt;)runner.query(sql, <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanListHandler</span>(User.class));
+        <span class="hljs-keyword">return</span> userList;
+    &#125;
+    <span class="hljs-keyword">public</span> User <span class="hljs-title function_">find</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span> <span class="hljs-keyword">throws</span> SQLException &#123;
+        QueryRunner runner=<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryRunner</span>(C3p0Utils.getDataSource());
+        String sql=<span class="hljs-string">&quot;select * from users where id=?&quot;</span>;
+        User user=(User)runner.query(sql, <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanHandler</span>(User.class),id);
+        <span class="hljs-keyword">return</span> user;
+    &#125;
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">insert</span><span class="hljs-params">(User user)</span> <span class="hljs-keyword">throws</span> SQLException &#123;
+        QueryRunner runner=<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryRunner</span>(C3p0Utils.getDataSource());
+        String sql=<span class="hljs-string">&quot;insert into users values(null,?,?,?,?)&quot;</span>;
+        <span class="hljs-type">int</span> num=runner.update(sql,<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[] &#123;user.getName(),user.getPassword(),user.getEmail(),user.getBirthday()&#125;);
+        <span class="hljs-keyword">if</span>(num&gt;<span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;<span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+     <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">update</span><span class="hljs-params">(User user)</span> <span class="hljs-keyword">throws</span> SQLException &#123;
+        QueryRunner runner=<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryRunner</span>(C3p0Utils.getDataSource());
+        String sql=<span class="hljs-string">&quot;update users set name=?,password=?,email=?,birthday=? where id=?&quot;</span>;
+        <span class="hljs-type">int</span> num=runner.update(sql,<span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>[] &#123;user.getName(),user.getPassword(),user.getEmail(),user.getBirthday(),user.getId()&#125;);
+        <span class="hljs-keyword">if</span>(num&gt;<span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+       &#125;
+
+	<span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">delete</span><span class="hljs-params">(<span class="hljs-type">int</span> id)</span> <span class="hljs-keyword">throws</span> SQLException &#123;
+        QueryRunner runner=<span class="hljs-keyword">new</span> <span class="hljs-title class_">QueryRunner</span>(C3p0Utils.getDataSource());
+        String sql=<span class="hljs-string">&quot;delete from users where id=?&quot;</span>;
+        <span class="hljs-type">int</span> num=runner.update(sql,id);
+        <span class="hljs-keyword">if</span>(num&gt;<span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        &#125;
+&#125;
+
+&#125;
+</code></pre></div></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaWeb/" class="category-chain-item">JavaWeb</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaWeb/" class="print-no-link">#JavaWeb</a>
+      
+        <a href="/tags/Listener/" class="print-no-link">#Listener</a>
+      
+        <a href="/tags/gdbcAPI/" class="print-no-link">#gdbcAPI</a>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0C3P0/" class="print-no-link">#数据库连接池C3P0</a>
+      
+        <a href="/tags/DBUtil%E5%B7%A5%E5%85%B7/" class="print-no-link">#DBUtil工具</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaWeb:Listener和gdbc和数据库连接池和DBUtil工具</div>
+      <div>http://example.com/2023/12/18/JavaWeb-Listener和gdbc连接池-2023-12-18/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qsjzxcpyy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/15/%E6%A8%A1%E6%8B%9Fqq%E9%80%9A%E4%BF%A1-2023-12-15/" title="模拟qq通信_2023.12.15">
+                        <span class="hidden-mobile">模拟qq通信_2023.12.15</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
