@@ -4,6 +4,87 @@
   
   
   <entry>
+    <title>iota函数</title>
+    <link href="/2023/12/21/iota%E5%87%BD%E6%95%B0/"/>
+    <url>/2023/12/21/iota%E5%87%BD%E6%95%B0/</url>
+    
+    <content type="html"><![CDATA[<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//以一个递增数列给一个容器赋值</span><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;numeric&gt;</span></span><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">nums</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : nums) &#123;        std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span>;    &#125;    std::cout &lt;&lt; std::endl;    std::<span class="hljs-built_in">iota</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">5</span>); <span class="hljs-comment">// fill nums with 5, 6, 7, 8...</span>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : nums) &#123;        std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span>;    &#125;    std::cout &lt;&lt; std::endl;    <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&#125;</code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>C++</category>
+      
+      <category>函数</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>iota函数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>数组进行降序排序如何获得排序后的下标序列</title>
+    <link href="/2023/12/21/%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E6%8E%92%E5%BA%8F%E5%90%8E%E7%9A%84%E4%B8%8B%E6%A0%87%E5%BA%8F%E5%88%97/"/>
+    <url>/2023/12/21/%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E6%8E%92%E5%BA%8F%E5%90%8E%E7%9A%84%E4%B8%8B%E6%A0%87%E5%BA%8F%E5%88%97/</url>
+    
+    <content type="html"><![CDATA[<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span>, <span class="hljs-title">b</span><span class="hljs-params">(n)</span>, <span class="hljs-title">c</span><span class="hljs-params">(n)</span></span>;    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;        std::cin &gt;&gt; a[i];    &#125;    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;        std::cin &gt;&gt; b[i];    &#125;    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;        std::cin &gt;&gt; c[i];    &#125;        <span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">pa</span><span class="hljs-params">(n)</span>, <span class="hljs-title">pb</span><span class="hljs-params">(n)</span>, <span class="hljs-title">pc</span><span class="hljs-params">(n)</span></span>;    std::<span class="hljs-built_in">iota</span>(pa.<span class="hljs-built_in">begin</span>(), pa.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);    std::<span class="hljs-built_in">iota</span>(pb.<span class="hljs-built_in">begin</span>(), pb.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);    std::<span class="hljs-built_in">iota</span>(pc.<span class="hljs-built_in">begin</span>(), pc.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);    std::<span class="hljs-built_in">sort</span>(pa.<span class="hljs-built_in">begin</span>(), pa.<span class="hljs-built_in">end</span>(),        [&amp;](<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j) &#123;            <span class="hljs-keyword">return</span> a[i] &gt; a[j];        &#125;);    std::<span class="hljs-built_in">sort</span>(pb.<span class="hljs-built_in">begin</span>(), pb.<span class="hljs-built_in">end</span>(),        [&amp;](<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j) &#123;            <span class="hljs-keyword">return</span> b[i] &gt; b[j];        &#125;);    std::<span class="hljs-built_in">sort</span>(pc.<span class="hljs-built_in">begin</span>(), pc.<span class="hljs-built_in">end</span>(),        [&amp;](<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j) &#123;            <span class="hljs-keyword">return</span> c[i] &gt; c[j];        &#125;);<span class="hljs-comment">//pa pb pc 就是排序后的下标序列</span></code></pre></div>]]></content>
+    
+    
+    <categories>
+      
+      <category>刷题</category>
+      
+      <category>做题技巧</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>做题技巧</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>sort函数自定义排序匿名函数</title>
+    <link href="/2023/12/21/sort%E5%87%BD%E6%95%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/"/>
+    <url>/2023/12/21/sort%E5%87%BD%E6%95%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<h4 id="sort函数的介绍"><a href="#sort函数的介绍" class="headerlink" title="sort函数的介绍"></a>sort函数的介绍</h4><p>sort()函数位于<algorithm>头文件中，大概是最常用的泛型算法之一了。顾名思义，这是用来排序的函数。它的一般形式为sort(iterator first,iterator last)，将[first,last)中的元素按升序排列。由于容器支持的迭代器类型必须为随机访问迭代器，sort() 只支持array、vector、deque 这 3 个容器。</p><p>应该说，大部分情况下，选择sort()函数进行排序是简单且高效的。sort对普通的快速排序进行了优化，并结合了插入排序和堆排序。根据不同的数量级别以及不同情况，能自动选用合适的排序方法。它的时间复杂度是O(N*log2N)。这比随便写一个O(N^2)的冒泡排序好太多了。也避免了手写快排的麻烦。</p><h4 id="自定义排序方法"><a href="#自定义排序方法" class="headerlink" title="自定义排序方法"></a>自定义排序方法</h4><p>sort()默认是升序的，那么，如果我们希望降序排列，或者是按绝对值大小排列，或者是其他各种各样的排序方式，又该怎么办呢？为此，sort()提供了第二个版本sort(iterator first,iterator last,cmp)。很多泛型算法都允许重载它的操作符，而sort()的操作符就是&lt;，或者，更通俗地说，就是排在前面。也就是说，我们可以自定义排在前面的判断方式。具体方法是利用这样一个函数：bool cmp(auto &amp;a,auto &amp;b){…}，如果返回true，就代表a应该排在b前面，否则是b在a前，然后sort就根据我们定义的比较方式进行排列。例如，如果我们希望降序排列，就返回a&gt;b即可。</p><p>举个例子：加入我们希望按照元素的绝对值排序，可以这么写</p><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-number">1</span><span class="hljs-number">2</span><span class="hljs-number">3</span><span class="hljs-number">4</span><span class="hljs-number">5</span><span class="hljs-number">6</span><span class="hljs-number">7</span><span class="hljs-number">8</span><span class="hljs-number">9</span><span class="hljs-number">10</span><span class="hljs-number">11</span><span class="hljs-number">12</span><span class="hljs-number">13</span><span class="hljs-number">14</span><span class="hljs-number">15</span><span class="hljs-number">16</span><span class="hljs-number">17</span><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span><span class="hljs-comment">//按绝对值升序排列的比较函数</span></span><span class="hljs-function"></span>&#123;    <span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(a)&lt;<span class="hljs-built_in">abs</span>(b);&#125;<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><span class="hljs-function"></span>&#123;    vector&lt;<span class="hljs-type">int</span>&gt; nums;    <span class="hljs-type">int</span> n;    <span class="hljs-keyword">while</span>(cin&gt;&gt;n) nums.<span class="hljs-built_in">push_back</span>(n);    <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(),nums.<span class="hljs-built_in">end</span>(),cmp);<span class="hljs-comment">//自定义的排序方式</span>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i:nums) cout&lt;&lt;i&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&#125;<span class="hljs-comment">//输入：1 2 3 -4 -7 -3 5 -8 6，输出：1 2 3 -3 -4 5 6 -7 -8</span></code></pre></div><p>这样，每次排序都要在外面定义一个cmp函数，然后在排序时调用它。然而，这是有缺陷的。一来，不直观，我们阅读代码时，只看到一个cmp，还要到外面去找它，如果排序次数很多，这么多函数很容易混淆。不过，更致命的是，这样定义的函数只能接受两个参数，就是比较的双方。试想一下，假如我们要根据b数组中元素的大小，来对a数组进行排序，那该怎么办呢？只好把b变成全局的，不但麻烦，而且可能无法操作。</p><h4 id="使用lambda函数代替cmp"><a href="#使用lambda函数代替cmp" class="headerlink" title="使用lambda函数代替cmp"></a>使用lambda函数代替cmp</h4><p>从这两个方面，可以看出lambda表达式的优越性了。它的结构是这样的：<code>[capture list](parameter list) -&gt;return type &#123;function body&#125;</code>其中，parameter list(参数列表)和function body(函数体)与上面的cmp函数没有什么差异。return type虽说必须尾置，但通常可以省略。而capture list(捕获列表)中可以填写作用域中的参数，使它在lambda表达式内部可见。这就解决了上面的第二个问题。比如说，我们要捕获b数组，就写成[&amp;b]即可(&amp;代表引用捕获)，也就是说捕获列表使lambda表达式可以使用不限量的外部参数，当然，如果不想指定捕获哪些，直接写[&amp;]，就是全部引用捕获。同时，哪里用到，就写在哪里，还不用起名字(所以也叫匿名函数)，使它既直观又方便。</p><p><strong>例如：我们根据flag数组中的元素大小，来对index数组(index对应着flag的下标)进行排序，可以这么写</strong></p><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-number">1</span><span class="hljs-number">2</span><span class="hljs-number">3</span><span class="hljs-number">4</span><span class="hljs-number">5</span><span class="hljs-number">6</span><span class="hljs-number">7</span><span class="hljs-number">8</span><span class="hljs-number">9</span><span class="hljs-number">10</span><span class="hljs-number">11</span><span class="hljs-number">12</span><span class="hljs-number">13</span><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><span class="hljs-function"></span>&#123;    vector&lt;<span class="hljs-type">int</span>&gt; flag  = &#123;<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>,<span class="hljs-number">6</span>&#125;;    vector&lt;<span class="hljs-type">int</span>&gt; index = &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>&#125;;    <span class="hljs-built_in">sort</span>(index.<span class="hljs-built_in">begin</span>(),index.<span class="hljs-built_in">end</span>(),[&amp;flag](<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)&#123;<span class="hljs-keyword">return</span> flag[a]&lt;flag[b];&#125;);    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i:index)        cout&lt;&lt;i&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;&#125;<span class="hljs-comment">//输出：4 0 1 3 2 8 6 5 7</span></code></pre></div><p>力扣857题的排序，就用到了这种方法。</p><p>最后，再列举几种常见的排序方式和使用它们的题目。</p><p>1.按照string的长度对string序列排序</p><p>sort(vec.begin(),vec.end(),[](auto &amp;s1,auto &amp;s2){return s.size()&lt;s2.size();});</p><p>在648. 单词替换 - 力扣中使用到了。</p><p>2.按照pair的second大小降序排序，如果相同再按first升序排序</p><p>sort(vec.begin(),vec.end(),[](auto &amp;p1,auto &amp;p2){return p1.second&#x3D;&#x3D;p2.second?p1.first<a href="p2.first:p1.second">p2.first:p1.second</a>p2.second;})</p><p>这种排序方法常见于利用哈希表统计词频后的排序过程。</p><p>在1636. 按照频率将数组升序排序和451. 根据字符出现频率排序中使用了类似的排序方法。</p><p>lambda表达式当然不仅仅可以用在排序里，剩下的用法可以慢慢去发掘😂。</p><p>作者: HeRen<br>链接: <a href="https://www.heren1229.top/posts/8454/">https://www.heren1229.top/posts/8454/</a><br>来源: HeRen’s Blog</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>C++</category>
+      
+      <category>函数</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>sort函数</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>JavaWeb:Listener和gdbc和数据库连接池和DBUtil工具</title>
     <link href="/2023/12/18/JavaWeb-Listener%E5%92%8Cgdbc%E8%BF%9E%E6%8E%A5%E6%B1%A0-2023-12-18/"/>
     <url>/2023/12/18/JavaWeb-Listener%E5%92%8Cgdbc%E8%BF%9E%E6%8E%A5%E6%B1%A0-2023-12-18/</url>

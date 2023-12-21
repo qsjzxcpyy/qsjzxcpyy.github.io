@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="qsjzxcpyy">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="sort函数的介绍sort()函数位于头文件中，大概是最常用的泛型算法之一了。顾名思义，这是用来排序的函数。它的一般形式为sort(iterator first,iterator last)，将[first,last)中的元素按升序排列。由于容器支持的迭代器类型必须为随机访问迭代器，sort() 只支持array、vector、deque 这 3 个容器。 应该说，大部分情况下，选择sort()函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sort函数自定义排序匿名函数">
+<meta property="og:url" content="http://example.com/2023/12/21/sort%E5%87%BD%E6%95%B0%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="小齐的blog">
+<meta property="og:description" content="sort函数的介绍sort()函数位于头文件中，大概是最常用的泛型算法之一了。顾名思义，这是用来排序的函数。它的一般形式为sort(iterator first,iterator last)，将[first,last)中的元素按升序排列。由于容器支持的迭代器类型必须为随机访问迭代器，sort() 只支持array、vector、deque 这 3 个容器。 应该说，大部分情况下，选择sort()函">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-21T08:10:27.000Z">
+<meta property="article:modified_time" content="2023-12-21T08:21:32.954Z">
+<meta property="article:author" content="qsjzxcpyy">
+<meta property="article:tag" content="sort函数">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>sort函数自定义排序匿名函数 - 小齐的blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小齐的blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="sort函数自定义排序匿名函数"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-21 16:10" pubdate>
+          2023年12月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">sort函数自定义排序匿名函数</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h4 id="sort函数的介绍"><a href="#sort函数的介绍" class="headerlink" title="sort函数的介绍"></a>sort函数的介绍</h4><p>sort()函数位于<algorithm>头文件中，大概是最常用的泛型算法之一了。顾名思义，这是用来排序的函数。它的一般形式为sort(iterator first,iterator last)，将[first,last)中的元素按升序排列。由于容器支持的迭代器类型必须为随机访问迭代器，sort() 只支持array、vector、deque 这 3 个容器。</p>
+<p>应该说，大部分情况下，选择sort()函数进行排序是简单且高效的。sort对普通的快速排序进行了优化，并结合了插入排序和堆排序。根据不同的数量级别以及不同情况，能自动选用合适的排序方法。它的时间复杂度是O(N*log2N)。这比随便写一个O(N^2)的冒泡排序好太多了。也避免了手写快排的麻烦。</p>
+<h4 id="自定义排序方法"><a href="#自定义排序方法" class="headerlink" title="自定义排序方法"></a>自定义排序方法</h4><p>sort()默认是升序的，那么，如果我们希望降序排列，或者是按绝对值大小排列，或者是其他各种各样的排序方式，又该怎么办呢？为此，sort()提供了第二个版本sort(iterator first,iterator last,cmp)。很多泛型算法都允许重载它的操作符，而sort()的操作符就是&lt;，或者，更通俗地说，就是排在前面。也就是说，我们可以自定义排在前面的判断方式。具体方法是利用这样一个函数：bool cmp(auto &amp;a,auto &amp;b){…}，如果返回true，就代表a应该排在b前面，否则是b在a前，然后sort就根据我们定义的比较方式进行排列。例如，如果我们希望降序排列，就返回a&gt;b即可。</p>
+<p>举个例子：加入我们希望按照元素的绝对值排序，可以这么写</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-number">4</span>
+<span class="hljs-number">5</span>
+<span class="hljs-number">6</span>
+<span class="hljs-number">7</span>
+<span class="hljs-number">8</span>
+<span class="hljs-number">9</span>
+<span class="hljs-number">10</span>
+<span class="hljs-number">11</span>
+<span class="hljs-number">12</span>
+<span class="hljs-number">13</span>
+<span class="hljs-number">14</span>
+<span class="hljs-number">15</span>
+<span class="hljs-number">16</span>
+<span class="hljs-number">17</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">cmp</span><span class="hljs-params">(<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)</span><span class="hljs-comment">//按绝对值升序排列的比较函数</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">abs</span>(a)&lt;<span class="hljs-built_in">abs</span>(b);
+&#125;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+    vector&lt;<span class="hljs-type">int</span>&gt; nums;
+    <span class="hljs-type">int</span> n;
+    <span class="hljs-keyword">while</span>(cin&gt;&gt;n) nums.<span class="hljs-built_in">push_back</span>(n);
+    <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(),nums.<span class="hljs-built_in">end</span>(),cmp);<span class="hljs-comment">//自定义的排序方式</span>
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i:nums) cout&lt;&lt;i&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">//输入：1 2 3 -4 -7 -3 5 -8 6，输出：1 2 3 -3 -4 5 6 -7 -8</span></code></pre></div>
+
+
+
+<p>这样，每次排序都要在外面定义一个cmp函数，然后在排序时调用它。然而，这是有缺陷的。一来，不直观，我们阅读代码时，只看到一个cmp，还要到外面去找它，如果排序次数很多，这么多函数很容易混淆。不过，更致命的是，这样定义的函数只能接受两个参数，就是比较的双方。试想一下，假如我们要根据b数组中元素的大小，来对a数组进行排序，那该怎么办呢？只好把b变成全局的，不但麻烦，而且可能无法操作。</p>
+<h4 id="使用lambda函数代替cmp"><a href="#使用lambda函数代替cmp" class="headerlink" title="使用lambda函数代替cmp"></a>使用lambda函数代替cmp</h4><p>从这两个方面，可以看出lambda表达式的优越性了。它的结构是这样的：<code>[capture list](parameter list) -&gt;return type &#123;function body&#125;</code>其中，parameter list(参数列表)和function body(函数体)与上面的cmp函数没有什么差异。return type虽说必须尾置，但通常可以省略。而capture list(捕获列表)中可以填写作用域中的参数，使它在lambda表达式内部可见。这就解决了上面的第二个问题。比如说，我们要捕获b数组，就写成[&amp;b]即可(&amp;代表引用捕获)，也就是说捕获列表使lambda表达式可以使用不限量的外部参数，当然，如果不想指定捕获哪些，直接写[&amp;]，就是全部引用捕获。同时，哪里用到，就写在哪里，还不用起名字(所以也叫匿名函数)，使它既直观又方便。</p>
+<p><strong>例如：我们根据flag数组中的元素大小，来对index数组(index对应着flag的下标)进行排序，可以这么写</strong></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-number">4</span>
+<span class="hljs-number">5</span>
+<span class="hljs-number">6</span>
+<span class="hljs-number">7</span>
+<span class="hljs-number">8</span>
+<span class="hljs-number">9</span>
+<span class="hljs-number">10</span>
+<span class="hljs-number">11</span>
+<span class="hljs-number">12</span>
+<span class="hljs-number">13</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+    vector&lt;<span class="hljs-type">int</span>&gt; flag  = &#123;<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">8</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>,<span class="hljs-number">6</span>&#125;;
+    vector&lt;<span class="hljs-type">int</span>&gt; index = &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>&#125;;
+    <span class="hljs-built_in">sort</span>(index.<span class="hljs-built_in">begin</span>(),index.<span class="hljs-built_in">end</span>(),[&amp;flag](<span class="hljs-type">int</span> a,<span class="hljs-type">int</span> b)&#123;<span class="hljs-keyword">return</span> flag[a]&lt;flag[b];&#125;);
+    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i:index)
+        cout&lt;&lt;i&lt;&lt;<span class="hljs-string">&quot; &quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;
+<span class="hljs-comment">//输出：4 0 1 3 2 8 6 5 7</span></code></pre></div>
+
+
+
+<p>力扣857题的排序，就用到了这种方法。</p>
+<p>最后，再列举几种常见的排序方式和使用它们的题目。</p>
+<p>1.按照string的长度对string序列排序</p>
+<p>sort(vec.begin(),vec.end(),[](auto &amp;s1,auto &amp;s2){return s.size()&lt;s2.size();});</p>
+<p>在648. 单词替换 - 力扣中使用到了。</p>
+<p>2.按照pair的second大小降序排序，如果相同再按first升序排序</p>
+<p>sort(vec.begin(),vec.end(),[](auto &amp;p1,auto &amp;p2){return p1.second&#x3D;&#x3D;p2.second?p1.first<a href="p2.first:p1.second">p2.first:p1.second</a>p2.second;})</p>
+<p>这种排序方法常见于利用哈希表统计词频后的排序过程。</p>
+<p>在1636. 按照频率将数组升序排序和451. 根据字符出现频率排序中使用了类似的排序方法。</p>
+<p>lambda表达式当然不仅仅可以用在排序里，剩下的用法可以慢慢去发掘😂。</p>
+<p>作者: HeRen<br>链接: <a target="_blank" rel="noopener" href="https://www.heren1229.top/posts/8454/">https://www.heren1229.top/posts/8454/</a><br>来源: HeRen’s Blog</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/C/" class="category-chain-item">C++</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/C/%E5%87%BD%E6%95%B0/" class="category-chain-item">函数</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/sort%E5%87%BD%E6%95%B0/" class="print-no-link">#sort函数</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>sort函数自定义排序匿名函数</div>
+      <div>http://example.com/2023/12/21/sort函数自定义排序/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>qsjzxcpyy</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年12月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/21/%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E6%8E%92%E5%BA%8F%E5%90%8E%E7%9A%84%E4%B8%8B%E6%A0%87%E5%BA%8F%E5%88%97/" title="数组进行降序排序如何获得排序后的下标序列">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数组进行降序排序如何获得排序后的下标序列</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/18/JavaWeb-Listener%E5%92%8Cgdbc%E8%BF%9E%E6%8E%A5%E6%B1%A0-2023-12-18/" title="JavaWeb:Listener和gdbc和数据库连接池和DBUtil工具">
+                        <span class="hidden-mobile">JavaWeb:Listener和gdbc和数据库连接池和DBUtil工具</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
