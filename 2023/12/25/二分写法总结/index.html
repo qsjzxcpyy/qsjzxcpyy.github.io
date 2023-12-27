@@ -16,22 +16,22 @@
   <meta name="author" content="qsjzxcpyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="&#x2F;&#x2F;以一个递增数列给一个容器赋值 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;numeric&gt;  int main() &#123;     std::vector&lt;int&gt; nums(10);      for (int i : nums) &#123;         std::cout &amp;lt">
+    <meta name="description" content="写法一 找到从左向右满足条件的第一个答案  check为一定不对的条件 int l &#x3D; 0 , r &#x3D; n - 1; while(l &lt; r)&#123;     int mid &#x3D; l + r &gt;&gt; 1;     if(check()) l &#x3D; mid + 1;     else r &#x3D; mid; &#125;    找到从右向左满足条件的第一个答案  check为一定不对的条">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iota函数">
-<meta property="og:url" content="http://example.com/2023/12/21/iota%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="二分方法总结">
+<meta property="og:url" content="http://example.com/2023/12/25/%E4%BA%8C%E5%88%86%E5%86%99%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="小齐的blog">
-<meta property="og:description" content="&#x2F;&#x2F;以一个递增数列给一个容器赋值 #include &lt;iostream&gt; #include &lt;vector&gt; #include &lt;numeric&gt;  int main() &#123;     std::vector&lt;int&gt; nums(10);      for (int i : nums) &#123;         std::cout &amp;lt">
+<meta property="og:description" content="写法一 找到从左向右满足条件的第一个答案  check为一定不对的条件 int l &#x3D; 0 , r &#x3D; n - 1; while(l &lt; r)&#123;     int mid &#x3D; l + r &gt;&gt; 1;     if(check()) l &#x3D; mid + 1;     else r &#x3D; mid; &#125;    找到从右向左满足条件的第一个答案  check为一定不对的条">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-21T08:38:45.000Z">
-<meta property="article:modified_time" content="2023-12-21T08:42:14.076Z">
+<meta property="article:published_time" content="2023-12-25T06:31:41.000Z">
+<meta property="article:modified_time" content="2023-12-25T08:20:36.239Z">
 <meta property="article:author" content="qsjzxcpyy">
-<meta property="article:tag" content="iota函数">
+<meta property="article:tag" content="二分">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>iota函数 - 小齐的blog</title>
+  <title>二分方法总结 - 小齐的blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="iota函数"></span>
+            <span id="subtitle" data-typed-text="二分方法总结"></span>
           
         </div>
 
@@ -208,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-21 16:38" pubdate>
-          2023年12月21日 下午
+        <time datetime="2023-12-25 14:31" pubdate>
+          2023年12月25日 下午
         </time>
       </span>
     
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          420 字
+          947 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          4 分钟
+          8 分钟
         
       </span>
     
@@ -268,36 +268,71 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">iota函数</h1>
+            <h1 id="seo-header">二分方法总结</h1>
             
             
               <div class="markdown-body">
                 
-                <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//以一个递增数列给一个容器赋值</span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
-<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;numeric&gt;</span></span>
-
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-    <span class="hljs-function">std::vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">nums</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;
-
-    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : nums) &#123;
-        std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span>;
-    &#125;
-    std::cout &lt;&lt; std::endl;
-
-    std::<span class="hljs-built_in">iota</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>(), <span class="hljs-number">5</span>); <span class="hljs-comment">// fill nums with 5, 6, 7, 8...</span>
-
-    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : nums) &#123;
-        std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span>;
-    &#125;
-    std::cout &lt;&lt; std::endl;
-
-    <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);
-    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+                <h4 id="写法一"><a href="#写法一" class="headerlink" title="写法一"></a>写法一</h4><ul>
+<li><p>找到从左向右满足条件的第一个答案</p>
+</li>
+<li><p>check为一定不对的条件</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> l = <span class="hljs-number">0</span> , r = n - <span class="hljs-number">1</span>;
+<span class="hljs-keyword">while</span>(l &lt; r)&#123;
+    <span class="hljs-type">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">check</span>()) l = mid + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span> r = mid;
 &#125;</code></pre></div>
 
+
+</li>
+<li><p>找到从右向左满足条件的第一个答案</p>
+</li>
+<li><p>check为一定不对的条件</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> l = <span class="hljs-number">0</span> , r = n - <span class="hljs-number">1</span>;
+<span class="hljs-keyword">while</span>(l &lt; r)&#123;
+    <span class="hljs-type">int</span> mid = l + r + <span class="hljs-number">1</span> &gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">check</span>()) r = mid - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span> l = mid;
+&#125;</code></pre></div>
+
+<p><strong>上述方法的缺点是边界处理太麻烦，当结果是0的时候，不知道第一个元素是满足条件的还是不满足条件，因为边界是0，n - 1同理，是边界，需要特判</strong></p>
+</li>
+</ul>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><ul>
+<li><p>找到从从左向右满足条件的第一个答案</p>
+</li>
+<li><p>check为一定不对的条件</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> l = <span class="hljs-number">0</span> , r = n - <span class="hljs-number">1</span>;
+<span class="hljs-keyword">while</span>(l &lt;= r)&#123;
+    <span class="hljs-type">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">check</span>()) l = mid + <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span> r = mid - <span class="hljs-number">1</span>;
+&#125;
+<span class="hljs-comment">//与从右向左类似，就是用l来判断边界和答案。</span></code></pre></div>
+
+
+</li>
+<li><p>找到从右向左满足条件的第一个答案</p>
+</li>
+<li><p>check为一定不对的条件</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> l = <span class="hljs-number">0</span> , r = n - <span class="hljs-number">1</span>;
+<span class="hljs-keyword">while</span>(l &lt;= r)&#123;
+    <span class="hljs-type">int</span> mid = l + r &gt;&gt; <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">check</span>()) r = mid - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span> l = mid + <span class="hljs-number">1</span>;
+&#125;
+<span class="hljs-comment">//我们来分析一下边界</span>
+<span class="hljs-comment">//1.首先如果数组中存在满足条件的元素或者在在数组范围之内</span>
+<span class="hljs-comment">//r指向的元素可能是会满足条件的元素，具体是不是要找到的元素要特判，为什么呢，如果l一直满足，l一直加一，直到l不满足了，r就开始减一，直到r &lt; l为止，</span>
+<span class="hljs-comment">//此时r指向的元素是从右向左第一个可能满足条件的元素，因为此时l指向的元素是第一个不满足条件的元素，它的左侧肯定是第一个可能满足条件的元素（从右向左的）</span>
+<span class="hljs-comment">//2.左边界</span>
+<span class="hljs-comment">//如果所有的元素都不满足条件，那么l指针不会动，r会一直减一，直到r = -1为止。</span>
+<span class="hljs-comment">//所以左边界很好判断只要判断r 是否等于 -1 即可，相等 则 找不到满足条件的元素</span>
+<span class="hljs-comment">//3.右边界</span>
+<span class="hljs-comment">//右边界需要特判一下，如果所有的元素都可能是目标元素，那么l就会一直加一，直到l = n结束，此时 r = n -1;</span>
+<span class="hljs-comment">//此时r指针所指向的元素可能是满足条件的也可能是不满足条件的。</span></code></pre></div></li>
+</ul>
 
                 
               </div>
@@ -316,12 +351,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/C/" class="category-chain-item">C++</a>
+  <a href="/categories/%E5%88%B7%E9%A2%98/" class="category-chain-item">刷题</a>
   
   
     <span>></span>
     
-  <a href="/categories/C/%E5%87%BD%E6%95%B0/" class="category-chain-item">函数</a>
+  <a href="/categories/%E5%88%B7%E9%A2%98/%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93%E4%B8%AA%E4%BA%BA%E7%90%86%E8%A7%A3/" class="category-chain-item">方法总结个人理解</a>
   
   
 
@@ -338,7 +373,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/iota%E5%87%BD%E6%95%B0/" class="print-no-link">#iota函数</a>
+        <a href="/tags/%E4%BA%8C%E5%88%86/" class="print-no-link">#二分</a>
       
     </div>
   
@@ -350,8 +385,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>iota函数</div>
-      <div>http://example.com/2023/12/21/iota函数/</div>
+      <div>二分方法总结</div>
+      <div>http://example.com/2023/12/25/二分写法总结/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +398,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月21日</div>
+          <div>2023年12月25日</div>
         </div>
       
       
@@ -395,9 +430,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/23/%E7%BA%BF%E6%80%A7DP/" title="线性DP">
+                      <a href="/2023/12/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%89%B9%E7%82%B9/" title="数据结构特点题单">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">线性DP</span>
+                        <span class="hidden-mobile">数据结构特点题单</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -405,8 +440,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/21/%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E6%8E%92%E5%BA%8F%E5%90%8E%E7%9A%84%E4%B8%8B%E6%A0%87%E5%BA%8F%E5%88%97/" title="数组进行降序排序如何获得排序后的下标序列">
-                        <span class="hidden-mobile">数组进行降序排序如何获得排序后的下标序列</span>
+                      <a href="/2023/12/24/%E4%BA%8C%E5%88%86%E9%A2%98%E7%9B%AE/" title="二分题目">
+                        <span class="hidden-mobile">二分题目</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
