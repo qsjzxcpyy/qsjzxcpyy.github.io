@@ -16,21 +16,39 @@
   <meta name="author" content="qsjzxcpyy">
   <meta name="keywords" content="">
   
-    <meta name="description" content="特殊数据结构特点题目列表二维数组，值，行递增，列递增，查找某个数，应该从右上角，或左下角开始找。 https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;search-a-2d-matrix-ii&#x2F;">
+    <meta name="description" content="从头开始系列一——idea创建一个JavaWeb项目浪里个浪白条 2022-10-11122阅读2分钟 专栏：  入门系列  以下内容亲自调试可执行，便于初学者入门java后端开发。如有疑问请评论，我会尽我所能解答。  前提java环境以及tomcat已安装 IDEA创建Web项目 此处以Idea 2020.3举例 1、新建普通Java项目 注意：Idea2020无法直接新建JavaWeb项目，只">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构特点题单">
-<meta property="og:url" content="http://example.com/2023/12/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%89%B9%E7%82%B9/index.html">
+<meta property="og:title" content="2020idea新建javaweb项目">
+<meta property="og:url" content="http://example.com/2023/12/28/2020idea%E6%96%B0%E5%BB%BAjavaweb%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="小齐的blog">
-<meta property="og:description" content="特殊数据结构特点题目列表二维数组，值，行递增，列递增，查找某个数，应该从右上角，或左下角开始找。 https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;search-a-2d-matrix-ii&#x2F;">
+<meta property="og:description" content="从头开始系列一——idea创建一个JavaWeb项目浪里个浪白条 2022-10-11122阅读2分钟 专栏：  入门系列  以下内容亲自调试可执行，便于初学者入门java后端开发。如有疑问请评论，我会尽我所能解答。  前提java环境以及tomcat已安装 IDEA创建Web项目 此处以Idea 2020.3举例 1、新建普通Java项目 注意：Idea2020无法直接新建JavaWeb项目，只">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-27T14:38:12.000Z">
-<meta property="article:modified_time" content="2023-12-27T14:44:15.723Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/685a48e64f244868a18cfef8a6844698~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/4f300e41a5044a1b82ca2eaa242bbb32~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/a1164a868efb4fd794fe464ccb77691f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/ba7721117c8046c0bd5781e2d400d58d~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/a3dcd3e0d8ed4bd48ec6c14688d481b8~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/95c3a4cd086e412c933e49388a4375b6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/e388ee22cc134d86b882a56cbde41741~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/a1ba445d2b1240d382d05f32c03b6d58~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/57f29984399f480282d37ace66c8dc0d~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/62c804d727104d91aad67cc9e21f0a8e~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/cc07576427104ad18f66de59d6f2ad3b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/b542590519094ef69affa4568e90bb9b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/791b2673902a4ce1b2cf525c1ddfd843~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/c9892618cd9c41b899330088abf60f97~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/2a53539f1b3642e2bf3eb738ea7f3355~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/b9fbf3ff92e548b0acac5d2bb0c566ca~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/b7fdd8070260447cb1e8d8f3d9f40ad3~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
+<meta property="article:published_time" content="2023-12-28T14:37:05.000Z">
+<meta property="article:modified_time" content="2023-12-28T14:44:03.449Z">
 <meta property="article:author" content="qsjzxcpyy">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/685a48e64f244868a18cfef8a6844698~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp">
   
   
   
-  <title>数据结构特点题单 - 小齐的blog</title>
+  <title>2020idea新建javaweb项目 - 小齐的blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构特点题单"></span>
+            <span id="subtitle" data-typed-text="2020idea新建javaweb项目"></span>
           
         </div>
 
@@ -207,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-12-27 22:38" pubdate>
-          2023年12月27日 晚上
+        <time datetime="2023-12-28 22:37" pubdate>
+          2023年12月28日 晚上
         </time>
       </span>
     
@@ -219,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          99 字
+          979 字
         
       </span>
     
@@ -230,7 +248,7 @@
         
         
         
-          1 分钟
+          9 分钟
         
       </span>
     
@@ -267,13 +285,65 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">数据结构特点题单</h1>
+            <h1 id="seo-header">2020idea新建javaweb项目</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="特殊数据结构特点题目列表"><a href="#特殊数据结构特点题目列表" class="headerlink" title="特殊数据结构特点题目列表"></a>特殊数据结构特点题目列表</h4><p>二维数组，值，行递增，列递增，查找某个数，应该从右上角，或左下角开始找。</p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-a-2d-matrix-ii/">https://leetcode.cn/problems/search-a-2d-matrix-ii/</a></p>
+                <h1 id="从头开始系列一——idea创建一个JavaWeb项目"><a href="#从头开始系列一——idea创建一个JavaWeb项目" class="headerlink" title="从头开始系列一——idea创建一个JavaWeb项目"></a>从头开始系列一——idea创建一个JavaWeb项目</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/user/2752832844861191/posts">浪里个浪白条</a></p>
+<p>2022-10-11122阅读2分钟</p>
+<p>专栏： </p>
+<p>入门系列</p>
+<blockquote>
+<p>以下内容亲自调试可执行，便于初学者入门java后端开发。如有疑问请评论，我会尽我所能解答。</p>
+</blockquote>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a><strong>前提</strong></h3><p>java环境以及tomcat已安装</p>
+<p>IDEA创建Web项目</p>
+<p>此处以Idea 2020.3举例</p>
+<h2 id="1、新建普通Java项目"><a href="#1、新建普通Java项目" class="headerlink" title="1、新建普通Java项目"></a>1、新建普通Java项目</h2><p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/685a48e64f244868a18cfef8a6844698~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="1.png"></p>
+<p><em>注意：Idea2020无法直接新建JavaWeb项目，只能通过新建普通Java项目的方式间接新建JavaWeb项目。</em></p>
+<p>选择项目位置和普通Java项目相同，此处略过。</p>
+<h2 id="2、修改普通Java项目为JavaWeb项目"><a href="#2、修改普通Java项目为JavaWeb项目" class="headerlink" title="2、修改普通Java项目为JavaWeb项目"></a>2、修改普通Java项目为JavaWeb项目</h2><p>项目根目录-&gt;右键-&gt;Add Framework Support</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/4f300e41a5044a1b82ca2eaa242bbb32~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="2.png"></p>
+<p>选择JavaEE版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/a1164a868efb4fd794fe464ccb77691f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="3.png"></p>
+<p>勾选左侧的Web Application</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/ba7721117c8046c0bd5781e2d400d58d~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="4.png"></p>
+<p>完成之后，可以看到项目下新建了web目录，并包含如下内容。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/a3dcd3e0d8ed4bd48ec6c14688d481b8~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="5.png"></p>
+<p>添加相关依赖File-&gt;Project Structure</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/95c3a4cd086e412c933e49388a4375b6~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="6.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/e388ee22cc134d86b882a56cbde41741~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="7.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/a1ba445d2b1240d382d05f32c03b6d58~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="8.png"></p>
+<p>执行上述操作之后，Tomcat相关Jar包就添加到了项目中，不添加后续很多开发无法进行。</p>
+<h2 id="3、项目部署"><a href="#3、项目部署" class="headerlink" title="3、项目部署"></a>3、项目部署</h2><p>此处指的是将Idea中开发的Web项目在Tomcat中部署。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/57f29984399f480282d37ace66c8dc0d~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="9.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/62c804d727104d91aad67cc9e21f0a8e~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="10.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/cc07576427104ad18f66de59d6f2ad3b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="11.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/b542590519094ef69affa4568e90bb9b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="12.png"></p>
+<p>现在已经完成了</p>
+<p>4、项目运行</p>
+<p>单击运行按钮，运行项目，默认会在浏览器中打开index.jsp</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/791b2673902a4ce1b2cf525c1ddfd843~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="13.png"></p>
+<p>在以后的开发中，多数时候都是重复上述步骤进行JavaWeb项目的开发</p>
+<h6 id="以上，就是使用idea创建一个Javaweb项目的步骤。"><a href="#以上，就是使用idea创建一个Javaweb项目的步骤。" class="headerlink" title="以上，就是使用idea创建一个Javaweb项目的步骤。"></a>以上，就是使用idea创建一个Javaweb项目的步骤。</h6><h6 id="以下，是项目操作相关的方法："><a href="#以下，是项目操作相关的方法：" class="headerlink" title="以下，是项目操作相关的方法："></a>以下，是项目操作相关的方法：</h6><h2 id="5、关联第三方Jar包"><a href="#5、关联第三方Jar包" class="headerlink" title="5、关联第三方Jar包"></a>5、关联第三方Jar包</h2><ol>
+<li>在项目WEB-INF目录下新建lib目录；</li>
+<li>将第三方Jar包（例如：MySQL驱动Jar包，druid连接池Jar包）拷贝到lib目录下；</li>
+<li>在lib上右键Add as Library；</li>
+<li>选择Project Library，完成</li>
+</ol>
+<ul>
+<li>Global Library表示所有工程都可以使用</li>
+<li>Project Library表示当前工程中所有模块都可以使用</li>
+<li>Module Library表示当前模块可以使用</li>
+</ul>
+<h2 id="6、导出war包"><a href="#6、导出war包" class="headerlink" title="6、导出war包"></a>6、导出war包</h2><p>项目完成后，有时候需要打成war方便部署。war包可以直接放入Tomcat的webapps目录中，启动Tomcat后自动解压，即可访问。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/c9892618cd9c41b899330088abf60f97~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="14.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/2a53539f1b3642e2bf3eb738ea7f3355~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="15.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/b9fbf3ff92e548b0acac5d2bb0c566ca~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="16.png"></p>
+<p>执行上述操作，后在项目根目录下生成out目录，内部包含的war包就是我们需要的war包。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/qsjzxcpyy/my_img@master/b7fdd8070260447cb1e8d8f3d9f40ad3~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="17.png"></p>
+<p>将该war包拷贝到tomcat的webapps目录下，双击运行startup.bat，tomcat会自动解压该war包并发布项目，发布之后我们就可以访问。</p>
 
                 
               </div>
@@ -292,15 +362,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%88%B7%E9%A2%98/" class="category-chain-item">刷题</a>
+  <a href="/categories/%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="category-chain-item">项目环境配置</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/%E5%88%B7%E9%A2%98/%E9%A2%98%E5%8D%95/" class="category-chain-item">题单</a>
-  
-  
-
   
 
       </span>
@@ -319,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数据结构特点题单</div>
-      <div>http://example.com/2023/12/27/数据结构特点/</div>
+      <div>2020idea新建javaweb项目</div>
+      <div>http://example.com/2023/12/28/2020idea新建javaweb项目/</div>
     </div>
     <div class="license-meta">
       
@@ -332,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年12月27日</div>
+          <div>2023年12月28日</div>
         </div>
       
       
@@ -364,18 +427,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/12/28/2020idea%E6%96%B0%E5%BB%BAjavaweb%E9%A1%B9%E7%9B%AE/" title="2020idea新建javaweb项目">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2020idea新建javaweb项目</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/25/%E4%BA%8C%E5%88%86%E5%86%99%E6%B3%95%E6%80%BB%E7%BB%93/" title="二分方法总结">
-                        <span class="hidden-mobile">二分方法总结</span>
+                      <a href="/2023/12/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%89%B9%E7%82%B9/" title="数据结构特点题单">
+                        <span class="hidden-mobile">数据结构特点题单</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
