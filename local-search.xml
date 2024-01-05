@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>归并排序用法题单</title>
+    <link href="/2024/01/05/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%94%A8%E6%B3%95/"/>
+    <url>/2024/01/05/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%94%A8%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<p><strong>关于配对区间的坐标问题，还是区间和的问题，可以先考虑有序的情况，看看能不能缩小时间复杂度</strong></p><p><strong>关于有序的双指针问题,看看是不是其中一个指针制约着另一个指针，看看时间复杂度能不能控制到o（n）</strong></p><p><strong>归并排序不仅仅可以实现求逆序对的数量，其本质是小范围的求有序，而且，前一段和后一段坐标分离，能控制不重复。</strong></p><p><a href="https://leetcode.cn/problems/count-of-range-sum/">https://leetcode.cn/problems/count-of-range-sum/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>刷题，题单</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>c++匿名函数递归写法</title>
     <link href="/2023/12/30/c-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95/"/>
     <url>/2023/12/30/c-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95/</url>
@@ -13,7 +32,7 @@
     
     <categories>
       
-      <category>c++</category>
+      <category>C++</category>
       
       <category>函数</category>
       
